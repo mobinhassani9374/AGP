@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=.;Initial Catalog=AGP_Db;Integrated Security=True"
+  },
+  "EnableLogService": true
+}
