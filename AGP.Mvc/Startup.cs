@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using AGP.DataLayer.Repositories;
 
 namespace AGP.Mvc
 {
@@ -29,6 +30,9 @@ namespace AGP.Mvc
             });
 
             services.AddMvc();
+
+            // repository and Servcie Injection
+            services.AddScoped<UserManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
