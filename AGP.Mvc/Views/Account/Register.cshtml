@@ -1,0 +1,18 @@
+﻿@model AGP.Domain.ViewModel.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+<form method="post" asp-action="Register" asp-controller="Account">
+    <div asp-validation-summary="All"></div>
+    <p>Email : <input type="text" asp-for="Email" /></p>
+    <p>FullName : <input type="text" asp-for="FullName" /></p>
+    <p>Password : <input type="password" asp-for="Password" /></p>
+    <p>ConfirmPassword : <input type="password" asp-for="ConfirmPassword" /></p>
+    <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl"/>
+    <input type="submit" value="Register" />
+</form>
+
+
