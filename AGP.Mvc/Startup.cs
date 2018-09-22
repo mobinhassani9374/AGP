@@ -28,7 +28,7 @@ namespace AGP.Mvc
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.AccessDeniedPath = "Account/AccessDenied";
+                    options.AccessDeniedPath = "/Account/AccessDenied";
                     options.LoginPath = "/Account/Login";
                     options.LogoutPath = "/Account/Logout";
                 });
