@@ -31,7 +31,14 @@ namespace AGP.Mvc
                     options.AccessDeniedPath = "/Account/AccessDenied";
                     options.LoginPath = "/Account/Login";
                     options.LogoutPath = "/Account/Logout";
-                    options.Events.OnValidatePrincipal=
+                    options.Events = new CookieAuthenticationEvents
+                    {
+                        OnValidatePrincipal = context =>
+                        {
+                            var cookieValidatorService = new Security.CookieValidateService();
+                            return cookieValidatorService.ValidateAsync(context);
+                        }
+                    };
                 });
 
             services.AddDbContext<DataLayer.AppDbContext>(options =>
