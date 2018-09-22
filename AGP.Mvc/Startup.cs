@@ -31,6 +31,7 @@ namespace AGP.Mvc
                     options.AccessDeniedPath = "/Account/AccessDenied";
                     options.LoginPath = "/Account/Login";
                     options.LogoutPath = "/Account/Logout";
+                    options.Events.OnValidatePrincipal=
                 });
 
             services.AddDbContext<DataLayer.AppDbContext>(options =>
@@ -53,6 +54,8 @@ namespace AGP.Mvc
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
 
             app.UseAuthentication();
 

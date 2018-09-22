@@ -50,7 +50,9 @@ namespace AGP.DataLayer.Repositories
 
         public Entities.User Find(string userName,string password)
         {
-            var model = _context.Users.FirstOrDefault(c=>c.UserName==userName && c.Password==password);
+            var passwordHash = PasswordHasher.Hash(password);
+
+            var model = _context.Users.FirstOrDefault(c=>c.UserName==userName && c.Password== passwordHash);
 
             return model;
         }
