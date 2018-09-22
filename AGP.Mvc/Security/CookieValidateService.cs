@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace AGP.Mvc.Security
 {
@@ -11,7 +12,15 @@ namespace AGP.Mvc.Security
     {
         public async Task ValidateAsync(CookieValidatePrincipalContext context)
         {
-            await handleUnauthorizedRequest(context);
+            var userPrincipal = context.Principal;
+
+            var serialNumber = userPrincipal.FindFirst(System.Security.Claims.ClaimTypes.SerialNumber);
+
+            if(serialNumber==null)
+            {
+                await handleUnauthorizedRequest(context);
+                return;
+            }
         }
         private Task handleUnauthorizedRequest(CookieValidatePrincipalContext context)
         {
