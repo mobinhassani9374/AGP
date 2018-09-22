@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AGP.Domain\AGP.Domain.csproj" />
     <ProjectReference Include="..\AGP.Utility\AGP.Utility.csproj" />
   </ItemGroup>
 

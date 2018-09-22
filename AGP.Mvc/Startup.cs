@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AGP.DataLayer.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AGP.Mvc
 {
@@ -24,6 +25,14 @@ namespace AGP.Mvc
         public IConfigurationRoot Configuration { get; private set; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.AccessDeniedPath = "Account/AccessDenied";
+                    options.LoginPath = "/Account/Login";
+                    options.LogoutPath = "/Account/Logout";
+                });
+
             services.AddDbContext<DataLayer.AppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -31,6 +40,8 @@ namespace AGP.Mvc
 
             services.AddMvc();
 
+            // configuration file Injection
+            services.AddSingleton<IConfigurationRoot>(config => { return Configuration; });
             // repository and Servcie Injection
             services.AddScoped<UserManager>();
         }
@@ -42,6 +53,8 @@ namespace AGP.Mvc
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAuthentication();
 
             #region database initializer
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using AGP.Domain.ViewModel.Account;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -14,9 +15,11 @@ namespace AGP.DataLayer.Repositories
         {
             _context = context;
         }
-        public async Task<bool> CreateAsync(string userName, string password, string fullName)
+        public async Task<RegisterResultViewModel> CreateAsync(string userName, string password, string fullName)
         {
-            _context.Users.Add(new Entities.User
+            var result = new RegisterResultViewModel();
+            var serialNumber = SerialNumberGenerator.Generate();
+            var user = _context.Users.Add(new Entities.User
             {
                 CreateDate = DateTime.Now,
                 Email = userName,
@@ -25,9 +28,19 @@ namespace AGP.DataLayer.Repositories
                 IsAdmin = false,
                 Password = PasswordHasher.Hash(password),
                 UserName = userName,
-                SerialNumber = SerialNumberGenerator.Generate()
+                SerialNumber = serialNumber
             });
-            return await _context.SaveChangesAsync() > 0;
+            if( await _context.SaveChangesAsync() > 0)
+            {
+                result.IsSuccess = true;
+                result.SerialNumber = serialNumber;
+                result.UserId = user.Entity.Id;
+            }
+            else
+            {
+                result.IsSuccess = false;
+            }
+            return result;
         }
 
         public bool ExistByUserName(string userName)

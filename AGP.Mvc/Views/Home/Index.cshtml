@@ -5,4 +5,13 @@
 }
 
 <h2>Index Pages</h2>
+@if(User.Identity.IsAuthenticated)
+{
+    <p>hello @User.Identity.Name</p>
+
+}
+else
+{
+   <P>No Authenticated</P>
+}
 

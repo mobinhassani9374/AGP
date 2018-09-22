@@ -4,15 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using AGP.Domain.ViewModel.Account;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Configuration;
 
 namespace AGP.Mvc.Controllers
 {
     public class AccountController : Controller
     {
         private readonly DataLayer.Repositories.UserManager _userManager;
-        public AccountController(DataLayer.Repositories.UserManager userManager)
+        private readonly IConfigurationRoot _Configuration;
+        public AccountController(DataLayer.Repositories.UserManager userManager, IConfigurationRoot Configuration)
         {
             _userManager = userManager;
+            _Configuration = Configuration;
         }
         public IActionResult Register(string returnUrl)
         {
@@ -34,9 +41,12 @@ namespace AGP.Mvc.Controllers
                     // create User
                     var result = await _userManager.CreateAsync(userName: model.Email, password: model.Password, fullName: model.FullName);
 
-                    if (result)
+                    if (result.IsSuccess)
                     {
                         // ثبت نام با موفقیت انجام شد لاگین شود و بره به ایندکس
+                        SignInAsync(userName:model.Email,userId:result.UserId,serialNumber:result.SerialNumber);
+
+                        return RedirectPermanent(string.IsNullOrEmpty(model.ReturnUrl)? "/" : model.ReturnUrl);
                     }
                     else ModelState.AddModelError("createUserFailed", "در انجام عملیات خطایی رخ داد مجددا تلاش کنید");
                 }
@@ -44,9 +54,24 @@ namespace AGP.Mvc.Controllers
             return View(model);
         }
 
-        private void SignIn(string userName, int userId, string serialNumber)
+        private async void SignInAsync(string userName, int userId, string serialNumber, bool isPersistent = true)
         {
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, userName));
+            claims.Add(new Claim(ClaimTypes.SerialNumber, serialNumber));
+            claims.Add(new Claim(Security.ClaimTypes.UserId, userId.ToString()));
 
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
+
+            var authenticationExpiresDay = _Configuration.GetValue<int>("AuthenticationExpiresDay", 30);
+
+            await HttpContext.SignInAsync(principal, new AuthenticationProperties
+            {
+                IsPersistent = isPersistent,
+                ExpiresUtc = DateTimeOffset.Now.AddDays(authenticationExpiresDay),
+            });
         }
     }
 }
