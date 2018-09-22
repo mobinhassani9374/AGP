@@ -21,6 +21,31 @@ namespace AGP.Mvc.Controllers
             _userManager = userManager;
             _Configuration = Configuration;
         }
+
+        public IActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.Find(model.Email, model.Password);
+                if (user == null)
+                {
+                    ModelState.AddModelError("not found user", "کاربری یافت نشد");
+                }
+                else
+                {
+                    SignInAsync(userName: model.Email, userId: user.Id, serialNumber: user.SerialNumber);
+
+                    return RedirectPermanent(string.IsNullOrEmpty(model.ReturnUrl) ? "/" : model.ReturnUrl);
+                }
+            }
+            return View(model);
+        }
         public IActionResult Register(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -44,14 +69,23 @@ namespace AGP.Mvc.Controllers
                     if (result.IsSuccess)
                     {
                         // ثبت نام با موفقیت انجام شد لاگین شود و بره به ایندکس
-                        SignInAsync(userName:model.Email,userId:result.UserId,serialNumber:result.SerialNumber);
+                        SignInAsync(userName: model.Email, userId: result.UserId, serialNumber: result.SerialNumber);
 
-                        return RedirectPermanent(string.IsNullOrEmpty(model.ReturnUrl)? "/" : model.ReturnUrl);
+                        return RedirectPermanent(string.IsNullOrEmpty(model.ReturnUrl) ? "/" : model.ReturnUrl);
                     }
                     else ModelState.AddModelError("createUserFailed", "در انجام عملیات خطایی رخ داد مجددا تلاش کنید");
                 }
             }
             return View(model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
+            return RedirectPermanent("/");
         }
 
         private async void SignInAsync(string userName, int userId, string serialNumber, bool isPersistent = true)

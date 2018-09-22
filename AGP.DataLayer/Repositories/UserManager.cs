@@ -47,5 +47,12 @@ namespace AGP.DataLayer.Repositories
         {
             return _context.Users.Any(c => c.UserName == userName);
         }
+
+        public Entities.User Find(string userName,string password)
+        {
+            var model = _context.Users.FirstOrDefault(c=>c.UserName==userName && c.Password==password);
+
+            return model;
+        }
     }
 }
