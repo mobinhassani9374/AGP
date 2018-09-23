@@ -22,6 +22,8 @@ namespace AGP.DataLayer.Mapper
             builder.Property(c => c.SerialNumber).IsRequired().HasMaxLength(250);
             // fullName
             builder.Property(c => c.FullName).IsRequired().HasMaxLength(250);
+            // relation
+            builder.HasMany(c => c.LogServices).WithOne(c => c.User).HasForeignKey(c => c.UserId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

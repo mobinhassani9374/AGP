@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AGP.DataLayer.Entities
+namespace AGP.Domain.ViewModel.LogService
 {
-    public class LogService
+    public class LogServiceViewModel
     {
-        public long Id { get; set; }
         public string Method { get; set; }
         public string RelativePath { get; set; }
         public TimeSpan Elapsed { get; set; }
@@ -15,7 +14,6 @@ namespace AGP.DataLayer.Entities
         public long? ResponseContentLength { get; set; }
         public string QueryString { get; set; }
         public string RequestIp { get; set; }
-        public User User { get; set; }
         public int? UserId { get; set; }
     }
 }
