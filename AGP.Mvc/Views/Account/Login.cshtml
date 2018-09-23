@@ -6,52 +6,53 @@
 }
 <div class="col-md-6 col-sm-6 col-xs-12 pull-left padding-0">
     <div class="box form-matrial margin-left-10 padding-10">
-        <div class="title">نکاتی درباره ورود به اکانت پی</div>
-        <div class="description">
-            <img src="~/docs/images/user-login.png" class="img-responsive login-img" />
-        </div>
-        <div class="description">
-            1. از این قسمت می توانید وارد سامانه
-            <b>اکانت پی</b> شوید
-        </div>
-        <div class="description">
-            2. برای استفاده از امکانات سامانه باید در اکانت پی ثبت نام کنید
-        </div>
-        <div class="description">
-            3. اگر ثبت نام نکرده اید از طریق این
-            <a href="/account/register" class="link">لینک</a> می توانید ثبت نام کنید
+        <div class="scroll">
+            <div class="title">نکاتی درباره ورود به اکانت پی</div>
+            <div class="description">
+                <img src="~/docs/images/user-login.png" class="img-responsive login-img" />
+            </div>
+            <div class="description">
+                1. از این قسمت می توانید وارد سامانه
+                <b>اکانت پی</b> شوید
+            </div>
+            <div class="description">
+                2. برای استفاده از امکانات سامانه باید در اکانت پی ثبت نام کنید
+            </div>
+            <div class="description">
+                3. اگر ثبت نام نکرده اید از طریق این
+                <a href="/account/register" class="link">لینک</a> می توانید ثبت نام کنید
+            </div>
         </div>
     </div>
 </div>
 <div class="col-md-6 col-sm-6 col-sx-12 padding-0">
     <div class="box form-material margin-left-10 padding-10">
-        <form method="post" asp-action="Login" asp-controller="Account">
+        <div class="scroll">
+            <form method="post" asp-action="Login" asp-controller="Account">
 
-            <div class="title">ورود به اکانت پی</div>
+                <div class="title">ورود به اکانت پی</div>
 
-            <div asp-validation-summary="All" class="alert alert-danger"></div>
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
 
-            <div class="col-md-12 col-sm-6 col-xs-12">
-
-                
-
-                <div class="form-group">
-                    <label for="example-email">ایمیل یا نام کاربری </label>
-                    <input type="email" required asp-for="Email" class="form-control" placeholder="   ایمیل خود  را وارد کنید ">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">ایمیل یا نام کاربری </label>
+                        <input type="email" required asp-for="Email" class="form-control" placeholder="   ایمیل خود  را وارد کنید ">
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <label for="example-email">رمز عبور </label>
-                    <input type="password" required asp-for="Password" class="form-control" placeholder="  رمز عبور را وارد کنید ">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">رمز عبور </label>
+                        <input type="password" required asp-for="Password" class="form-control" placeholder="  رمز عبور را وارد کنید ">
+                    </div>
                 </div>
-            </div>
 
-            <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />
 
-            <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="ورود به سامانه" />
-        </form>
+                <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="ورود به سامانه" />
+            </form>
+        </div>
     </div>
 </div>
 

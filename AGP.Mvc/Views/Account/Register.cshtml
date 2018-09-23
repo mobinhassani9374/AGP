@@ -3,16 +3,73 @@
     ViewData["Title"] = "ثبت نام - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="col-md-6 col-sm-6 col-xs-12 pull-left padding-0">
+    <div class="box form-matrial margin-left-10 padding-10">
+        <div class="scroll">
+            <div class="title">نکاتی درباره ورود به اکانت پی</div>
+            <div class="description">
+                <img src="~/docs/images/user-login.png" class="img-responsive login-img" />
+            </div>
+            <div class="description">
+                1. از این قسمت می توانید در 
+                <b>اکانت پی</b> ثبت نام کنید 
+            </div>
+            <div class="description">
+                2. برای استفاده از امکانات سامانه باید در اکانت پی ثبت نام کنید
+            </div>
+            <div class="description">
+                3. اگر ثبت نام کرده اید از طریق این
+                <a href="/account/login" class="link">لینک</a> می توانید وارد شوید 
+            </div>
+        </div>
+    </div>
+</div>
 
-<h2>Register</h2>
-<form method="post" asp-action="Register" asp-controller="Account">
-    <div asp-validation-summary="All"></div>
-    <p>Email : <input type="text" asp-for="Email" /></p>
-    <p>FullName : <input type="text" asp-for="FullName" /></p>
-    <p>Password : <input type="password" asp-for="Password" /></p>
-    <p>ConfirmPassword : <input type="password" asp-for="ConfirmPassword" /></p>
-    <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl"/>
-    <input type="submit" value="Register" />
-</form>
+
+<div class="col-md-6 col-sm-6 col-sx-12 padding-0">
+    <div class="box form-material margin-left-10 padding-10">
+        <div class="scroll">
+            <div class="title"> ثبت نام در اکانت پی</div>
+
+            <form method="post" asp-action="Register" asp-controller="Account">
+
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">ایمیل  </label>
+                        <input type="email" required asp-for="Email" class="form-control" placeholder="   ایمیل خود  را وارد کنید ">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">نام و نام خانوادگی </label>
+                        <input type="text" required asp-for="FullName" class="form-control" placeholder="   نام و نام خانوادگی  خود  را وارد کنید ">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">  رمز عبور </label>
+                        <input required type="password" asp-for="Password" class="form-control" placeholder=" رمز عبور  خود  را وارد کنید ">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">   تکرار رمز عبور </label>
+                        <input required type="password" asp-for="ConfirmPassword" class="form-control" placeholder=" رمز عبور  خود  را تکرار  کنید ">
+                    </div>
+                </div>
+
+                <input type="hidden" asp-for="ReturnUrl" value="@ViewBag.ReturnUrl" />
+
+                <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="ثبت نام" />
+            </form>
+        </div>
+    </div>
+</div>
+   
 
 
