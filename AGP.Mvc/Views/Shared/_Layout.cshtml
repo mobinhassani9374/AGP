@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=11">
-    
+
     <title>@ViewBag.Title</title>
 
     <link rel="stylesheet" href="~/docs/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -19,6 +19,12 @@
 
     <script src="~/docs/lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
     <script src="~/docs/lib/bootstrap/bootstrap.min.js"></script>
+
+    <script src="~/docs/lib/fancybox2.1.5/js/jquery.fancybox.pack.js"></script>
+    <link href="~/docs/lib/fancybox2.1.5/css/jquery.fancybox.css" rel="stylesheet" />
+
+    <link href="~/docs/lib/sweetAlert/css/sweetalert.css" rel="stylesheet" />
+    <script src="~/docs/lib/sweetAlert/js/sweetalert.js"></script>
 
 </head>
 <body>
@@ -77,7 +83,7 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <a href="index.html">
+                                <a href="/home/index">
                                     <span class="fa fa-home"></span> صفحه اصلی
                                 </a>
                             </li>
@@ -99,12 +105,12 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#">
+                                <a href="/account/register" target="_blank">
                                     <span class="glyphicon glyphicon-user"></span> ثبت نام
                                 </a>
                             </li>
                             <li>
-                                <a href="login.html" target="_blank">
+                                <a href="/account/login" target="_blank">
                                     <span class="glyphicon glyphicon-log-in"></span> ورود
                                 </a>
                             </li>
@@ -123,6 +129,6 @@
         </footer>
     </div>
 
-    <script src="~.docs/js/script.js"></script>
+    <script src="~/docs/js/script.js"></script>
 </body>
 </html>
