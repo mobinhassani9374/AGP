@@ -52,7 +52,7 @@ namespace AGP.DataLayer.Repositories
         {
             var passwordHash = PasswordHasher.Hash(password);
 
-            var model = _context.Users.FirstOrDefault(c=>c.UserName==userName && c.Password== passwordHash);
+            var model = _context.Users.FirstOrDefault(c=>c.Email==userName && c.Password== passwordHash);
 
             return model;
         }
