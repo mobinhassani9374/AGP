@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AGP.DataLayer.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using AGP.Mvc.Middleware;
 
 namespace AGP.Mvc
 {
@@ -44,6 +45,7 @@ namespace AGP.Mvc
             services.AddSingleton<IConfigurationRoot>(config => { return Configuration; });
             // repository and Servcie Injection
             services.AddScoped<UserManager>();
+            services.AddScoped<LogServiceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +69,8 @@ namespace AGP.Mvc
             }
 
             #endregion
+
+            app.UseMiddleware<LogServiceMiddleware>();
 
             app.UseMvcWithDefaultRoute();
         }

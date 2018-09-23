@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -13,25 +14,22 @@ namespace AGP.DataLayer.Repositories
         {
             _context = context;
         }
-        public Task Log(LogServiceViewModel model)
+        public void Log(LogServiceViewModel model)
         {
-            return Task.Run(() =>
+            var entity = new Entities.LogService
             {
-                var entity = new Entities.LogService
-                {
-                    Method = model.Method,
-                    QueryString = model.QueryString,
-                    RelativePath = model.RelativePath,
-                    RequestContentLength = model.RequestContentLength,
-                    ResponseContentLength = model.ResponseContentLength,
-                    RequestIp = model.RequestIp,
-                    StatusCode = model.StatusCode,
-                    UserId = model.UserId,
-                    Elapsed = model.Elapsed,
-                };
-                _context.Add(entity);
-                _context.SaveChanges();
-            });
+                Method = model.Method,
+                QueryString = model.QueryString,
+                RelativePath = model.RelativePath,
+                RequestContentLength = model.RequestContentLength,
+                ResponseContentLength = model.ResponseContentLength,
+                RequestIp = model.RequestIp,
+                StatusCode = model.StatusCode,
+                UserId = model.UserId,
+                Elapsed = model.Elapsed,
+            };
+            _context.LogServices.Add(entity);
+            _context.SaveChanges();
         }
     }
 }
