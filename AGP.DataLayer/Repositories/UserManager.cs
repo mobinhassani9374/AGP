@@ -48,11 +48,11 @@ namespace AGP.DataLayer.Repositories
             return _context.Users.Any(c => c.UserName == userName);
         }
 
-        public Entities.User Find(string userName,string password)
+        public Entities.User Find(string email,string password)
         {
             var passwordHash = PasswordHasher.Hash(password);
 
-            var model = _context.Users.FirstOrDefault(c=>c.Email==userName && c.Password== passwordHash);
+            var model = _context.Users.FirstOrDefault(c=>c.Email==email && c.Password== passwordHash);
 
             return model;
         }
