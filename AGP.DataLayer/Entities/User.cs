@@ -16,5 +16,6 @@ namespace AGP.DataLayer.Entities
         public DateTime? LastLogoutDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
+        public ICollection<LogService> LogServices { get; set; }
     }
 }
