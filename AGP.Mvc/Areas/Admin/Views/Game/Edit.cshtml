@@ -5,7 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form asp-controller="Game" asp-action="Edit" asp-area="Admin" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id"/>
+    <input type="hidden" asp-for="Id" />
+    @if (TempData["Success"] != null)
+    {
+        if ((bool)TempData["Success"])
+        {
+            <div class="alert alert-success">@(TempData["Message"])</div>
+        }
+        else
+        {
+            <div class="alert alert-warning">@(TempData["Message"])</div>
+        }
+    }
     <p>نام(حروف انگلیسی) : <input type="text" asp-for="Name" required /></p>
     <p>نام نمایشی(فارسی) : <input type="text" asp-for="DisplayName" required /></p>
     <p>عکس های آپلود شده برای این بازی</p>

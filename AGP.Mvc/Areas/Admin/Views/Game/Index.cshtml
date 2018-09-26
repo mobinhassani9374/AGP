@@ -21,6 +21,18 @@
             <div class="description">
                 از این قسمت می توانید لیست بازی های ثبت شده در سامانه را مشاهده کنید
             </div>
+            @if (TempData["Success"] != null)
+            {
+                if ((bool)TempData["Success"])
+                {
+                    <div class="alert alert-success">@(TempData["Message"])</div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">@(TempData["Message"])</div>
+                }
+            }
+
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -82,15 +94,3 @@
             });
     }
 </script>
-@if (TempData["Success"] != null)
-{
-    var message = (string)TempData["Message"];
-    var success = (bool)TempData["Success"];
-    <script>
-       debugger
-
-       var message = '@TempData["Message"]'
-       console.log(message);
-       swal("انجام شد ", message, "success");
-    </script>
-}

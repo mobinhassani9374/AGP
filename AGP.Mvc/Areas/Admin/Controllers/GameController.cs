@@ -88,6 +88,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
                     });
 
                     TempData.AddResult(result);
+                   
 
                     return RedirectToAction(nameof(Create));
                 }
@@ -148,6 +149,8 @@ namespace AGP.Mvc.Areas.Admin.Controllers
                     var fileStream = new FileStream(path, FileMode.Create);
 
                     c.CopyTo(fileStream);
+
+                    fileStream.Close();
 
                     imgagesName.Add(imageName);
                 });
