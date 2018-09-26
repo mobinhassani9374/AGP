@@ -30,12 +30,6 @@ $(function () {
 
       //////////////////////////////
 
-    $('.delete').on('click',function(){
-      sweet();
-      })
-
-      //////////////////////////////////
-
       $(".scroll").mCustomScrollbar({
           scrollButtons: { enable: true, scrollType: "stepped" },
           keyboard: { scrollType: "stepped" },
@@ -71,25 +65,4 @@ $(function () {
     return sep;
   }
 
-  //sweet 
-  function sweet() {
-    swal({
-      title: "حذف اکانت ",
-      text: "آیا مطمئن هستید ؟؟",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: 'btn-danger',
-      confirmButtonText: 'بله ، حذف کن',
-      cancelButtonText: "نه ، منصرف شدم",
-      closeOnConfirm: false,
-      closeOnCancel: false
-    },
-    function(isConfirm){
-      if (isConfirm){
-        swal("Deleted!", "Your imaginary file has been deleted!", "success");
-      } else {
-        swal("Cancelled", "Your imaginary file is safe :)", "error");
-      }
-    });
-  }
 });

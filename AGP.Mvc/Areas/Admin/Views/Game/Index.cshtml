@@ -5,28 +5,81 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var count = 1;
 }
-<table>
-    <tr>
-        <th>#</th>
-        <th>نام بازی</th>
-        <th>نام نمایشی بازی</th>
-        <th>تعداد عکس</th>
-        <th>اقدامات</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@(count++)</td>
-            <td>@item.Name</td>
-            <td>@item.DisplayName</td>
-            <td>@item.Images.Count</td>
-            <td>
-                <a asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)">حذف</a>
-                <a asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)">ویرایش</a>
-            </td>
-        </tr>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-area="Admin">پنل ادمین </a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت بازی </li>
+        <li class="breadcrumb-item active" aria-current="page"> لیست بازی ها </li>
+    </ol>
+</nav>
+
+<div class="col-md-12">
+    <div class="box form-material padding-10">
+        <form>
+            <div class="title">لیست اکانت های من</div>
+            <div class="description">
+              از این قسمت می توانید لیست بازی های ثبت شده در سامانه را مشاهده کنید 
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>نام بازی</th>
+                            <th>نام نمایشی بازی</th>
+                            <th>تعداد عکس</th>
+                            <th>اقدامات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fa-iransansdn">@(count++)</td>
+                                <td>@item.Name</td>
+                                <td>@item.DisplayName</td>
+                                <td class="fa-iransansdn">@item.Images.Count</td>
+                                <td>
+                                    <a data-toggle="tooltip" title="ویرایش" class="fancybox fancybox.iframe" data-width="980" asp-action="Edit"  asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
+                                    <a data-toggle="tooltip" class="delete" asp-action="Delete"  asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" title="حذف" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('.delete').on('click', function (e) {
+        e.preventDefault();
+        console.log($(this).attr('href'));
+        sweet($(this).attr('href'));
+    })
+
+    //sweet 
+    function sweet(url) {
+        swal({
+            title: "حذف بازی ",
+            text: "آیا مطمئن هستید ؟؟",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn-danger',
+            confirmButtonText: 'بله ، حذف کن',
+            cancelButtonText: "نه ، منصرف شدم",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = url;
+                    swal("حذف بازی", "با موفقیت حذف شد ", "success");
+                } else {
+                    swal.close();
+                }
+            });
     }
-</table>
-
-
-
+</script>

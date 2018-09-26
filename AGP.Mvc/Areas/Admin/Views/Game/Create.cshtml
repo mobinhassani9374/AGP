@@ -4,6 +4,15 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-area="Admin">پنل ادمین </a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت بازی </li>
+        <li class="breadcrumb-item active" aria-current="page"> اضافه نمودن بازی جدید </li>
+    </ol>
+</nav>
+
 <p>ایجاد نمودن یازی</p>
 <form asp-controller="Game" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All"></div>

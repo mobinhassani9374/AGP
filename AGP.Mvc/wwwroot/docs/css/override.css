@@ -102,3 +102,30 @@ main .box-admin {
 .margin-right-60 {
     margin-right: 60px !important;
 }
+
+@media (min-width: 768px) {
+    .navbar-right {
+        float: left !important;
+         margin-left: -10px; 
+    }
+}
+
+.breadcrumb {
+    background-color: transparent !important;
+    margin: 0 15px 10px;
+    padding: 8px 7px;
+}
+
+    .breadcrumb .breadcrumb-item a {
+        color: #00897B;
+        font-weight: 500;
+    }
+
+    .breadcrumb .breadcrumb-item.active a {
+        color: #666;
+        font-weight:500;
+    }
+.fancybox-lock .fancybox-overlay {
+    overflow: auto;
+    overflow-y:auto !important;
+}
