@@ -26,4 +26,8 @@
     <ProjectReference Include="..\AGP.Domain\AGP.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>
