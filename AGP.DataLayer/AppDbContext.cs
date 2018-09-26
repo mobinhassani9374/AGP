@@ -10,11 +10,16 @@ namespace AGP.DataLayer
         public AppDbContext(DbContextOptions options) : base(options) { }
         public DbSet<Entities.User> Users { get; set; }
         public DbSet<Entities.LogService> LogServices { get; set; }
+        public DbSet<Entities.Game> Games { get; set; }
+        public DbSet<Entities.ImageGame> ImageGames { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             // userMapper
             modelBuilder.ApplyConfiguration(new Mapper.UserMapper());
+            modelBuilder.ApplyConfiguration(new Mapper.LogServiceMapper());
+            modelBuilder.ApplyConfiguration(new Mapper.GameMapper());
+            modelBuilder.ApplyConfiguration(new Mapper.ImageGameMapper());
         }
     }
 }
