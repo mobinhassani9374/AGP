@@ -4,6 +4,27 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Model.DisplayName
+<form>
+    <div asp-validation-summary="All"></div>
+    <p>نام(حروف انگلیسی) : <input type="text" asp-for="Name" required/></p>
+    <p>نام نمایشی(فارسی) : <input type="text" asp-for="DisplayName" required/></p>
+    <p>عکس های آپلود شده برای این بازی</p>
+    @if(Model.Images.Count==0)
+    {
+        <p style="color:red;">عکسی تاکنون آپلود نکرده اید</p>
+
+    }
+    else
+    {
+        <div>
+            @foreach(var item in Model.Images)
+            {
+                <p><img src="~/Attachment/@(item.ImageName)" style="width:100px;height:100px;"/></p>
+
+            }
+        </div>
+
+    }
+</form>
 
 
