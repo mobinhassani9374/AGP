@@ -30,6 +30,16 @@ $(function () {
       sweet();
     })
 
+      $(".scroll").mCustomScrollbar({
+          scrollButtons: { enable: true, scrollType: "stepped" },
+          keyboard: { scrollType: "stepped" },
+          mouseWheel: { scrollAmount: 188, normalizeDelta: true },
+          theme: "rounded-dark",
+          autoExpandScrollbar: true,
+          snapAmount: 188,
+          snapOffset: 65
+      });
+
   });
 
   // seperator 

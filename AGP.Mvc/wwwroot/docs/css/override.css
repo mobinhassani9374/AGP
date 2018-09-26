@@ -1,6 +1,5 @@
 ﻿.scroll {
     height: 400px;
-    overflow: auto;
     padding: 0 10px;
 }
 
@@ -24,4 +23,9 @@
 
 main .box {
     overflow:auto;
+}
+
+footer .text {
+    color: #777;
+    margin: 0;
 }
