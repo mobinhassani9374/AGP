@@ -1,37 +1,91 @@
 ﻿@using AGP.Domain.ViewModel.Game
 @model GameViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "ویرایش نمودن بازی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<form asp-controller="Game" asp-action="Edit" asp-area="Admin" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id"/>
-    <p>نام(حروف انگلیسی) : <input type="text" asp-for="Name" required /></p>
-    <p>نام نمایشی(فارسی) : <input type="text" asp-for="DisplayName" required /></p>
-    <p>عکس های آپلود شده برای این بازی</p>
-    @if (Model.Images.Count == 0)
-    {
-        <p style="color:red;">عکسی تاکنون آپلود نکرده اید</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-area="Admin">پنل ادمین </a></li>
+        <li class="breadcrumb-item active" aria-current="page">مدیریت بازی </li>
+        <li class="breadcrumb-item active" aria-current="page"> ویرایش نمودن بازی  </li>
+    </ol>
+</nav>
 
-    }
-    else
-    {
-        <div>
-            @foreach (var item in Model.Images)
-            {
-                <p>
-                    <img src="~/Attachment/@(item.ImageName)" style="width:100px;height:100px;" />
-                    <label>حذف این عکس <input type="checkbox" name="deleteImages" value="@(item.Id)" /></label>
-                </p>
-            }
-        </div>
+<div class="col-md-12">
+    <div class="box form-material padding-10">
+        <form asp-controller="Game" asp-action="Edit" asp-area="Admin" method="post" enctype="multipart/form-data">
 
-    }
-    <p>عکس های جدید</p>
-    <p>عکس های بازی را انتخاب کنید : <input type="file" name="files" multiple /></p>
-    <p>توجه کنید که حجم عکس های بازی برای آپلود نباید بیش از @ViewBag.GameIamgeMaxFileSize کیلوبایت باشند</p>
-    <input type="submit" value="اضافه نمودن" />
+            <div class="title">ویرایش نمودن بازی  </div>
 
-</form>
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">نام(حروف انگلیسی)</label>
+                    <input type="text" required asp-for="Name" class="form-control" placeholder=" نام(حروف انگلیسی) بازی  را وارد کنید">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">نام نمایشی(فارسی)</label>
+                    <input type="text" required asp-for="DisplayName" class="form-control" placeholder=" نام نمایشی(فارسی) بازی را وارد کنید">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">عکس های آپلود شده برای این بازی</label>
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>عکس بازی </th>
+                            <th>ایا حذف شود ؟؟</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Images.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="2" class="text-center text-danger ">عکسی تا کنون آپلود نکرده اید </td>
+                            </tr>
+
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.Images)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Attachment/@(item.ImageName)" style="width:100px;height:100px;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="deleteImages" value="@(item.Id)"
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">عکس های جدید برای بازی انتخاب کنید</label>
+                    <input type="file" name="files" multiple />
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <input type="submit" class="btn  btn-primary pull-left  padding-10" value="ویرایش  نمودن" />
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
