@@ -48,11 +48,17 @@ $(function () {
 
       /////////////////////
 
-      $('.gride').isotope({
-          // options
-          itemSelector: '.gride-item',
-          layoutMode: 'fitRows'
-      });
+      $(function () {
+          grid = $('.gride').isotope({
+              itemSelector: '.gride__item',
+              layoutMode: 'masonry',
+              isOriginLeft: false
+          });
+
+          setTimeout(function () {
+              grid.isotope('layout');
+          }, 0);
+      })
 
       /////////////////////////////////
 
