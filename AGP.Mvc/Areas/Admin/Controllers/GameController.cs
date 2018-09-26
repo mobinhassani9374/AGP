@@ -70,6 +70,8 @@ namespace AGP.Mvc.Areas.Admin.Controllers
 
                         c.CopyTo(fileStream);
 
+                        fileStream.Close();
+
                         imgagesName.Add(imageName);
                     });
                     // insert db

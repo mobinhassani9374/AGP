@@ -19,7 +19,7 @@
         <form>
             <div class="title">لیست اکانت های من</div>
             <div class="description">
-              از این قسمت می توانید لیست بازی های ثبت شده در سامانه را مشاهده کنید 
+                از این قسمت می توانید لیست بازی های ثبت شده در سامانه را مشاهده کنید
             </div>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -41,8 +41,8 @@
                                 <td>@item.DisplayName</td>
                                 <td class="fa-iransansdn">@item.Images.Count</td>
                                 <td>
-                                    <a data-toggle="tooltip" title="ویرایش" class="fancybox fancybox.iframe" data-width="980" asp-action="Edit"  asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
-                                    <a data-toggle="tooltip" class="delete" asp-action="Delete"  asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" title="حذف" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
+                                    <a data-toggle="tooltip" title="ویرایش" class="fancybox fancybox.iframe" data-width="980" asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
+                                    <a data-toggle="tooltip" class="delete" asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" title="حذف" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
                                 </td>
                             </tr>
                         }
@@ -60,7 +60,7 @@
         sweet($(this).attr('href'));
     })
 
-    //sweet 
+    //sweet
     function sweet(url) {
         swal({
             title: "حذف بازی ",
@@ -82,3 +82,15 @@
             });
     }
 </script>
+@if (TempData["Success"] != null)
+{
+    var message = (string)TempData["Message"];
+    var success = (bool)TempData["Success"];
+    <script>
+       debugger
+
+       var message = '@TempData["Message"]'
+       console.log(message);
+       swal("انجام شد ", message, "success");
+    </script>
+}
