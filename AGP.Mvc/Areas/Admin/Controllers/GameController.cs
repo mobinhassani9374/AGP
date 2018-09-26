@@ -29,7 +29,9 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var model = _gameRepository.GetAll();
+
+            return View(model);
         }
         public IActionResult Create()
         {
@@ -93,11 +95,36 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Edit(int id)
         {
-            return View();
+            var exist = _gameRepository.ExistById(id);
+            if (!exist)
+            {
+                TempData.AddResult(Utility.ServiceResult.Error("آی دی مربوطه وجود ندارد"));
+
+                return RedirectToAction(nameof(Index));
+            }
+            var model = _gameRepository.GetById(id);
+            return View(model);
         }
         public IActionResult Delete(int id)
         {
-            return View();
+            var exist = _gameRepository.ExistById(id);
+            if (exist)
+            {
+                // دریافت عکس ها
+                var images = _gameRepository.GetImages(id);
+                // حذف عکس ها
+                images.ForEach(c=>
+                {
+                    var path = Path.Combine(_env.WebRootPath, "Attachment", c);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+                });
+                var result = _gameRepository.Delete(id);
+                TempData.AddResult(result);
+            }
+            else TempData.AddResult(Utility.ServiceResult.Error("آی دی مربوطه وجود ندارد"));
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

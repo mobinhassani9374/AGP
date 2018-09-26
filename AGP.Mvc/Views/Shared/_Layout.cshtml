@@ -44,7 +44,6 @@
     @*isotope*@
 
     <script src="~/docs/lib/isotope/isotope.pkgd.min.js"></script>
-
 </head>
 <body>
     <div class="wrapper">
@@ -141,7 +140,7 @@
         <main>
             @RenderBody()
         </main>
-        
+
 
         <footer>
             <p class="text">کلیه حقوق مادی و معنوی این سایت محفوظ می باشد </p>
@@ -151,3 +150,10 @@
     <script src="~/docs/js/script.js?v=0.0.2"></script>
 </body>
 </html>
+@if(TempData["Success"]!=null)
+{
+    var message = (string)TempData["Message"];
+    var success = (bool)TempData["Success"];
+    <script>alert('@(message)');</script>
+}
+

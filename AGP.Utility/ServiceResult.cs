@@ -16,5 +16,9 @@ namespace AGP.Utility
         {
             return new ServiceResult() { Success=false, Message="در انجام عملیات خطایی صورت گرفت مجددا تلاش کنید" };
         }
+        public static ServiceResult Error(string message)
+        {
+            return new ServiceResult() { Success = false, Message = message };
+        }
     }
 }

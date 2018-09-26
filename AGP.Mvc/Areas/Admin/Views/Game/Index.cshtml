@@ -1,7 +1,32 @@
-﻿
+﻿@using AGP.Domain.ViewModel.Game
+@model List<GameViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 1;
 }
+<table>
+    <tr>
+        <th>#</th>
+        <th>نام بازی</th>
+        <th>نام نمایشی بازی</th>
+        <th>تعداد عکس</th>
+        <th>اقدامات</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(count++)</td>
+            <td>@item.Name</td>
+            <td>@item.DisplayName</td>
+            <td>@item.Images.Count</td>
+            <td>
+                <a asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)">حذف</a>
+                <a asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)">ویرایش</a>
+            </td>
+        </tr>
+    }
+</table>
+
 
 

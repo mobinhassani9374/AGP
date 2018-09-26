@@ -10,8 +10,8 @@ namespace AGP.Mvc.ExtensionMethods
     {
         public static void AddResult(this ITempDataDictionary tempData,Utility.ServiceResult result)
         {
-            tempData.Add("ServiceResult.Success",result.Success);
-            tempData.Add("ServiceResult.Message", result.Message);
+            tempData.Add("Success",result.Success);
+            tempData.Add("Message", result.Message);
         }
     }
 }
