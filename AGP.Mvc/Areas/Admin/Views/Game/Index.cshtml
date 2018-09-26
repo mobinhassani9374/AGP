@@ -68,15 +68,14 @@
             type: "warning",
             showCancelButton: true,
             confirmButtonClass: 'btn-danger',
-            confirmButtonText: 'بله ، حذف کن',
-            cancelButtonText: "نه ، منصرف شدم",
+            confirmButtonText: 'بله',
+            cancelButtonText: "خیر",
             closeOnConfirm: false,
             closeOnCancel: false
         },
             function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = url;
-                    swal("حذف بازی", "با موفقیت حذف شد ", "success");
                 } else {
                     swal.close();
                 }
