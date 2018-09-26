@@ -1,7 +1,7 @@
 ﻿@using AGP.Domain.ViewModel.Game
 @model GameCreateViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "اضافه نمودن بازی جدید - اکانت پی";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,13 +13,60 @@
     </ol>
 </nav>
 
-<p>ایجاد نمودن یازی</p>
-<form asp-controller="Game" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data">
-    <div asp-validation-summary="All"></div>
-    <p>نام(حروف انگلیسی) : <input type="text" asp-for="Name" required/></p>
-    <p>نام نمایشی(فارسی) : <input type="text" asp-for="DisplayName" required/></p>
-    <p>عکس های بازی را انتخاب کنید : <input type="file" name="files" multiple/></p>
-    <p>توجه کنید که حجم عکس های بازی برای آپلود نباید بیش از @ViewBag.GameIamgeMaxFileSize کیلوبایت باشند</p>
-    <input type="submit" value="اضافه نمودن" />
-</form>
+
+<div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+    <div class="box form-matrial padding-10">
+        <div class="scroll">
+            <div class="title">نکاتی درباره اضافه نمودن بازی جدید    </div>
+            <div class="description">
+                <img src="~/docs/images/user-login.png" class="img-responsive login-img" />
+            </div>
+            <div class="description">
+                1. از این قسمت می توانید بازی اضافه کنید 
+            </div>
+            <div class="description">
+               2. برای هر بازی می توانید به تعداد دلخواه عکس اضافه کنید 
+            </div>
+            <div class="description">
+               3. عکس هبر بازی نباید بیشتر از <span class="fa-iransansdn">60</span> کیلو بایت باشد 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-sm-6 col-sx-12">
+    <div class="box form-material padding-10">
+        <div class="scroll">
+            <form asp-controller="Game" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+                <div class="title">اضافه نمودن بازی جدید </div>
+
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">نام(حروف انگلیسی)</label>
+                        <input type="email" required asp-for="Name" class="form-control" placeholder=" نام(حروف انگلیسی) بازی  را وارد کنید">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">نام نمایشی(فارسی)</label>
+                        <input type="text" required asp-for="DisplayName" class="form-control" placeholder=" نام نمایشی(فارسی) بازی را وارد کنید">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">عکس های بازی را انتخاب کنید</label>
+                        <input type="file" name="files" multiple />
+                    </div>
+                </div>
+
+                <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="اضافه نمودن" />
+            </form>
+        </div>
+    </div>
+</div>
 
