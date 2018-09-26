@@ -151,3 +151,8 @@
     <script src="~/docs/js/script.js?v=0.0.1"></script>
 </body>
 </html>
+@if(TempData["ServiceResult.Success"]!=null)
+{
+     <script>alert('@(TempData["ServiceResult.Message"])');</script>
+
+}
