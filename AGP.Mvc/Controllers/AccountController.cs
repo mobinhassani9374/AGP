@@ -39,7 +39,7 @@ namespace AGP.Mvc.Controllers
                 }
                 else
                 {
-                    SignInAsync(userName: model.Email, userId: user.Id, serialNumber: user.SerialNumber);
+                    SignInAsync(userName: model.Email, userId: user.Id, serialNumber: user.SerialNumber, role: user.IsAdmin ? "Admin" : "User");
 
                     return RedirectPermanent(string.IsNullOrEmpty(model.ReturnUrl) ? "/" : model.ReturnUrl);
                 }
@@ -88,12 +88,13 @@ namespace AGP.Mvc.Controllers
             return RedirectPermanent("/");
         }
 
-        private async void SignInAsync(string userName, int userId, string serialNumber, bool isPersistent = true)
+        private async void SignInAsync(string userName, int userId, string serialNumber, bool isPersistent = true, string role = "User")
         {
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, userName));
             claims.Add(new Claim(ClaimTypes.SerialNumber, serialNumber));
             claims.Add(new Claim(Security.ClaimTypes.UserId, userId.ToString()));
+            claims.Add(new Claim(ClaimTypes.Role, role));
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

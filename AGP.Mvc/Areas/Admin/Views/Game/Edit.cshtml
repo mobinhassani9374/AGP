@@ -19,7 +19,18 @@
             <div class="title">ویرایش نمودن بازی  </div>
 
             <div asp-validation-summary="All" class="alert alert-danger"></div>
+            @if (TempData["Success"] != null)
+            {
+                if ((bool)TempData["Success"])
+                {
+                    <div class="alert alert-success">@(TempData["Message"])</div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">@(TempData["Message"])</div>
+                }
 
+            }
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label for="example-email">نام(حروف انگلیسی)</label>

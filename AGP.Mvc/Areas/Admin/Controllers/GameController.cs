@@ -10,9 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using AGP.DataLayer.Repositories;
 using AGP.Mvc.ExtensionMethods;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AGP.Mvc.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="Admin")]
     [Area("Admin")]
     public class GameController : Controller
     {
