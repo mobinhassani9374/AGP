@@ -129,3 +129,8 @@ main .box-admin {
     overflow: auto;
     overflow-y:auto !important;
 }
+
+input[type=file] {
+    display: block;
+    margin: 15px 0;
+}
