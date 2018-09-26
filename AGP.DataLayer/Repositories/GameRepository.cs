@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -31,6 +32,42 @@ namespace AGP.DataLayer.Repositories
             if (result > 0) return ServiceResult.Okay();
             return ServiceResult.Error();
 
+        }
+        public List<GameViewModel> GetAll()
+        {
+            var model = _context.
+                Games.
+                Include(c => c.Images).
+                Select(c => new GameViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    DisplayName = c.DisplayName,
+                    CreatDate = c.CreatDate,
+                    Images = c.Images.Select(cu => new ImageGameViewModel
+                    {
+                        Id = cu.Id,
+                        ImageName = cu.ImageName
+                    }).ToList()
+                }).
+                OrderByDescending(c => c.Id).
+                ToList();
+
+            return model;
+        }
+        public ServiceResult Delete(int id)
+        {
+            var entity = _context.Games.FirstOrDefault(c => c.Id == id);
+            _context.Remove(entity);
+            var result = _context.SaveChanges();
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+        }
+        public bool ExistById(int id)
+        {
+            var exist = _context.Games.Any(c=>c.Id==id);
+
+            return exist;
         }
     }
 }

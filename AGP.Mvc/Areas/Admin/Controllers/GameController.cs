@@ -29,7 +29,9 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var model = _gameRepository.GetAll();
+
+            return View(model);
         }
         public IActionResult Create()
         {
@@ -97,7 +99,15 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Delete(int id)
         {
-            return View();
+            var exist = _gameRepository.ExistById(id);
+            if (exist)
+            {
+                var result = _gameRepository.Delete(id);
+                TempData.AddResult(result);
+            }
+            else TempData.AddResult(Utility.ServiceResult.Error("آی دی مربوطه وجود ندارد"));
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
