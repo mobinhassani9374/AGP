@@ -91,15 +91,64 @@ namespace AGP.DataLayer.Repositories
 
             return exist;
         }
-        public List<string> GetImages(int id)
+        public List<string> GetImageNames(int id)
         {
             var model = _context.
                 ImageGames.
                 Where(c => c.GameId == id).
-                Select(c=>c.ImageName).
+                Select(c => c.ImageName).
                 ToList();
 
             return model;
+        }
+        public List<ImageGameViewModel> GetImageGames(List<int> imageGameIds)
+        {
+            var model = _context.
+                ImageGames.
+                Where(c => imageGameIds.Contains(c.Id)).
+                Select(c => new ImageGameViewModel
+                {
+                    Id = c.Id,
+                    ImageName = c.ImageName,
+                }).
+                ToList();
+
+            return model;
+        }
+        public ServiceResult DeleteImageGames(List<int> imageGameIds)
+        {
+            var data = _context.ImageGames.Where(c => imageGameIds.Contains(c.Id)).ToList();
+
+            data.ForEach(c =>
+            {
+                _context.Remove(c);
+            });
+            var result = _context.SaveChanges();
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+        }
+        public void AddImageGames(int id, List<string> imageNames)
+        {
+            imageNames.ForEach(c =>
+            {
+                _context.ImageGames.Add(new Entities.ImageGame
+                {
+                    GameId = id,
+                    ImageName = c
+                });
+            });
+            _context.SaveChanges();
+        }
+
+        public ServiceResult Update(int id, string name, string displayName)
+        {
+            var entity = _context.Games.FirstOrDefault(c => c.Id == id);
+            entity.Name = name;
+            entity.DisplayName = displayName;
+            _context.Update(entity);
+            var result = _context.SaveChanges();
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
         }
     }
 }

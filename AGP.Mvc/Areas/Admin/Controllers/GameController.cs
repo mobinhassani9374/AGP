@@ -102,8 +102,66 @@ namespace AGP.Mvc.Areas.Admin.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.GameIamgeMaxFileSize = Configuration.GetValue<long>("GameIamgeMaxFileSize", 60);
             var model = _gameRepository.GetById(id);
             return View(model);
+        }
+        [HttpPost]
+        public IActionResult Edit(GameViewModel model, List<IFormFile> files,
+            List<int> deleteImages)
+        {
+            var gameIamgeMaxFileSize = Configuration.GetValue<long>("GameIamgeMaxFileSize", 60);
+            var imageValid = true;
+            for (int i = 0; i < files.Count; i++)
+            {
+                if (files[i].Length > gameIamgeMaxFileSize)
+                {
+                    imageValid = false;
+                    break;
+                }
+            }
+            if (imageValid)
+            {
+                // حذف عکس ها 
+                var imageGames = _gameRepository.GetImageGames(deleteImages);
+                // حذف از دیسک
+                imageGames.ForEach(c =>
+                {
+                    var path = Path.Combine(_env.WebRootPath, "Attachment", c.ImageName);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+                });
+                // حذف از دیتابیس
+                _gameRepository.DeleteImageGames(imageGames.Select(c => c.Id).ToList());
+
+                // اضافه نمودن عکس های جدید
+                // آپلود عکس های جدید
+                List<string> imgagesName = new List<string>();
+                files.ForEach(c =>
+                {
+                    var imageName = $"{Guid.NewGuid()}.{Path.GetExtension(c.FileName)}";
+
+                    var path = Path.Combine(_env.WebRootPath, "Attachment", imageName);
+
+                    var fileStream = new FileStream(path, FileMode.Create);
+
+                    c.CopyTo(fileStream);
+
+                    imgagesName.Add(imageName);
+                });
+
+
+                _gameRepository.AddImageGames(model.Id, imgagesName);
+
+                var result = _gameRepository.Update(model.Id, model.Name, model.DisplayName);
+
+                TempData.AddResult(result);
+            }
+            else
+            {
+                TempData.AddResult(Utility.ServiceResult.Error($"یک یا چند تا از عکس های انتخاب شده حجمشان بیش از {gameIamgeMaxFileSize} کیلو بایت است"));
+            }
+            return RedirectToAction(nameof(Edit), new { id = model.Id });
         }
         public IActionResult Delete(int id)
         {
@@ -111,9 +169,9 @@ namespace AGP.Mvc.Areas.Admin.Controllers
             if (exist)
             {
                 // دریافت عکس ها
-                var images = _gameRepository.GetImages(id);
+                var images = _gameRepository.GetImageNames(id);
                 // حذف عکس ها
-                images.ForEach(c=>
+                images.ForEach(c =>
                 {
                     var path = Path.Combine(_env.WebRootPath, "Attachment", c);
                     if (System.IO.File.Exists(path))
