@@ -17,18 +17,24 @@ $(function () {
 
     $('.seperator').each(function (index, el) {
       $(el).text(seperator(el.innerText));
-    })
+      })
+
+      /////////////////////
 
     $('.fancybox').fancybox({
       beforeLoad : function() {         
         this.width  = parseInt(this.element.data('width'));  
         this.height = parseInt(this.element.data('height'));
     }
-    });
+      });
+
+      //////////////////////////////
 
     $('.delete').on('click',function(){
       sweet();
-    })
+      })
+
+      //////////////////////////////////
 
       $(".scroll").mCustomScrollbar({
           scrollButtons: { enable: true, scrollType: "stepped" },
@@ -39,6 +45,16 @@ $(function () {
           snapAmount: 188,
           snapOffset: 65
       });
+
+      /////////////////////
+
+      $('.gride').isotope({
+          // options
+          itemSelector: '.gride-item',
+          layoutMode: 'fitRows'
+      });
+
+      /////////////////////////////////
 
   });
 

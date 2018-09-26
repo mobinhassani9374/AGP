@@ -13,6 +13,61 @@ footer .text {
     margin: 0;
 }
 
+main .box-admin {
+    box-shadow: none !important;
+    border-radius: 2px !important;
+    border-color:#eee;
+    border-top: 2px solid #00897B;
+    height:auto !important;
+}
+
+.box-admin .box-admin__top {
+    padding-bottom:10px;
+    border-bottom:1px solid #ccc;
+    overflow:hidden;
+}
+    .box-admin .box-admin__top .box-admin__top__icon {
+        font-size: 50px;
+        color: #7460EE;
+        float: right;
+    }
+    .box-admin .box-admin__top .box-admin__top__title {
+        font-size: 16px;
+        padding-right: 15px;
+        /* padding-top: 10px; */
+        margin-top: 39px;
+        position: relative;
+        top: 13px;
+        color: #798699;
+    }
+.box-admin .box-admin__menu {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+}
+
+    .box-admin .box-admin__menu .box-admin__menu__item {
+       padding:0;
+    }
+
+        .box-admin .box-admin__menu .box-admin__menu__item a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            color: #00897B;
+            border-bottom: 1px dotted #ccc;
+            transition:all 0.3s;
+            font-weight:500;
+        }
+
+            .box-admin .box-admin__menu .box-admin__menu__item a:hover {
+                background-color: #00897B;
+                color: #fff;
+            }
+
 @media (max-width:767px) {
     .scroll {
         height: auto;
