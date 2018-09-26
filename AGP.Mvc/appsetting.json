@@ -3,5 +3,6 @@
     "DefaultConnection": "Data Source=.;Initial Catalog=AGP_Db;Integrated Security=True"
   },
   "EnableLogService": true,
-  "AuthenticationExpiresDay": 30
+  "AuthenticationExpiresDay": 30,
+  "GameIamgeMaxFileSize": 6291456000
 }
