@@ -40,8 +40,10 @@
             <form asp-controller="Game" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data">
 
                 <div class="title">اضافه نمودن بازی جدید </div>
-
-                <div asp-validation-summary="All" class="alert alert-danger"></div>
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
                 @if (TempData["Success"] != null)
                 {
                     if ((bool)TempData["Success"])

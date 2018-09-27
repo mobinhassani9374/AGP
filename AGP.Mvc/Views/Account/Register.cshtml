@@ -33,7 +33,10 @@
 
             <form method="post" asp-action="Register" asp-controller="Account">
 
-                <div asp-validation-summary="All" class="alert alert-danger"></div>
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
 
                 <div class="col-md-12 col-sm-6 col-xs-12">
                     <div class="form-group">

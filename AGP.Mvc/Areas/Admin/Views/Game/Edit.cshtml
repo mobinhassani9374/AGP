@@ -18,7 +18,10 @@
 
             <div class="title">ویرایش نمودن بازی  </div>
 
-            <div asp-validation-summary="All" class="alert alert-danger"></div>
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+            }
             @if (TempData["Success"] != null)
             {
                 if ((bool)TempData["Success"])
