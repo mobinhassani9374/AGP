@@ -4,5 +4,99 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+
+<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
+    <div class="box ">
+        <div class="profile height-auto">
+            <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
+            <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
+            <h4 class="profile__name">مهدی حسنی </h4>
+            <ul class="profile__menu">
+
+                <li class="profile__menu__item">
+                    <a class="active" href="#">لیست اکانت های من </a>
+                </li>
+
+                <li class="profile__menu__item">
+                    <a  href="#">اضافه نمودن اکانت جدید </a>
+                </li>
+
+                <li class="profile__menu__item">
+                    <a href="#">پروفایل من </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-sm-7 col-sx-12">
+    <div class="box form-material padding-10">
+        <form>
+            <div class="title">لیست اکانت های من</div>
+            <div class="description">
+                از این قسمت می توانید اکانت های خود را مشاهده و مدیریت کنید
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام بازی</th>
+                            <th>سطح </th>
+                            <th>تاریخ بار گزاری</th>
+                            <th>قیمت </th>
+                            <th>وضعیت </th>
+                            <th>وضعیت خرید </th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fa-iransansdn">1</td>
+                            <td>کلش آف کلن </td>
+                            <td class="fa-iransansdn">450</td>
+                            <td class="fa-iransansdn">1397 / 8 / 09</td>
+                            <td class="seperator color-black">100000</td>
+                            <td class="text-success">تایید شده است </td>
+                            <td class="text-info">هنوز خریداری نشده است </td>
+                            <td>
+                                <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
+                                <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
+                                <a data-toggle="tooltip" data-width="980" data-height="500" title="مشاهده جزئیات" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fa-iransansdn">2</td>
+                            <td>کلش آف کلن </td>
+                            <td class="fa-iransansdn">450</td>
+                            <td class="fa-iransansdn">1397 / 8 / 09</td>
+                            <td class="seperator color-black">100000</td>
+                            <td class="text-danger">رد شده است </td>
+                            <td class="text-info">هنوز خریداری نشده است </td>
+                            <td>
+                                <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
+                                <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
+                                <a data-toggle="tooltip" title="مشاهده جزئیات" data-width="980" data-height="500" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fa-iransansdn">3</td>
+                            <td>کلش آف کلن </td>
+                            <td class="fa-iransansdn">450</td>
+                            <td class="fa-iransansdn">1397 / 8 / 09</td>
+                            <td class="seperator color-black">100000</td>
+                            <td class="text-warning"> در حال بررسی است </td>
+                            <td class="text-info">هنوز خریداری نشده است </td>
+                            <td>
+                                <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
+                                <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
+                                <a data-toggle="tooltip" data-width="980" data-height="500" title="مشاهده جزئیات" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
 
