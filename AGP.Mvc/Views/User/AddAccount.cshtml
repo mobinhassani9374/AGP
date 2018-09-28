@@ -72,7 +72,8 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label for="example-email">قیمت (تومان)</label>
-                    <input type="number" required min="0" asp-for="Price" class="form-control" placeholder="قیمت پیشنهادی خود را وارد کنید ">
+                    <input type="hidden"  asp-for="Price" >
+                    <input type="text" required   name="displayPrice" class="form-control" placeholder="قیمت پیشنهادی خود را وارد کنید ">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -93,4 +94,17 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    $(function () { 
+        $('input[name="displayPrice"]').bind('keyup change click', function () {
+            var val = $(this).val().replace(/,/g, '');
+            var seperator = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            $(this).val(seperator);
+            $('input[name="Price"]').val(val);
+            console.log(seperator);
+        })
+    })
+</script>
 
