@@ -53,7 +53,7 @@
                                 <td>@item.DisplayName</td>
                                 <td class="fa-iransansdn">@item.Images.Count</td>
                                 <td>
-                                    <a data-toggle="tooltip" title="ویرایش" class="fancybox fancybox.iframe" data-width="980" asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
+                                    <a data-toggle="tooltip" title="ویرایش"  asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
                                     <a data-toggle="tooltip" class="delete" asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" title="حذف" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
                                 </td>
                             </tr>
