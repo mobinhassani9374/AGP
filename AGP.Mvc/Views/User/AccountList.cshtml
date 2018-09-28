@@ -1,0 +1,57 @@
+﻿@using AGP.Domain.ViewModel.AccountGame
+@model List<AccountGameViewModel>
+@{
+    ViewData["Title"] = "AccountList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 1;
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>نام بازی</th>
+            <th>سطح </th>
+            <th>تاریخ بار گزاری</th>
+            <th>قیمت </th>
+            <th>وضعیت </th>
+            <th>وضعیت خرید </th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="fa-iransansdn">@(count++)</td>
+                <td>@item.GameDisplayName </td>
+                <td class="fa-iransansdn">@item.Level</td>
+                <td class="fa-iransansdn">@item.CreateDate</td>
+                <td class="seperator color-black">@item.Price</td>
+                <td class="text-success">
+                    @if (item.State == 1)
+                    {
+                        <span>در حال بررسی</span>
+                    }
+                    else if (item.State == 2)
+                    {
+                        <span>تایید شده</span>
+                    }
+                    else
+                    {
+                        <span>رد شده است</span>
+                    }
+                </td>
+                <td class="text-info">هنوز خریداری نشده است </td>
+                <td>
+                    <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
+                    <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
+                    <a data-toggle="tooltip" data-width="980" data-height="500" title="مشاهده جزئیات" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+

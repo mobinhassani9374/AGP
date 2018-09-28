@@ -8,7 +8,6 @@ namespace AGP.Domain.ViewModel.AccountGame
 {
     public class AccountGameCreateViewModel
     {
-        [Required(ErrorMessage ="سطح اکانت بازی نمی تواند فاقد مقدار باشد")]
         public string Level { get; set; }
 
         [Required(ErrorMessage = "توضیحات اکانت نمی تواند فاقد مقدار باشد")]
@@ -17,5 +16,8 @@ namespace AGP.Domain.ViewModel.AccountGame
         public decimal Price { get; set; }
 
         public int GameId { get; set; }
+
+        public int UserId { get; set; }
+      
     }
 }

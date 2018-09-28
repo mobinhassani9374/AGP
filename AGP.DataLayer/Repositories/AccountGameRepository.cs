@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using AGP.Domain.ViewModel.Game;
+using AGP.Domain.ViewModel.AccountGame;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -27,6 +29,55 @@ namespace AGP.DataLayer.Repositories
 
             return model;
 
+        }
+        public Utility.ServiceResult Create(AccountGameCreateViewModel model)
+        {
+            _context.AccountGames.Add(new Entities.AccountGame
+            {
+                CreateDate = DateTime.Now,
+                Description = model.Description,
+                GameId = model.GameId,
+                IsActive = true,
+                Level = model.Level,
+                Price = model.Price,
+                State = Entities.AccountGameState.Waiting,
+                BuyState = Entities.AccountGameBuyState.WaitingForBuy,
+                UserId = model.UserId
+            });
+            var result = _context.SaveChanges();
+            if (result > 0) return Utility.ServiceResult.Okay();
+            return Utility.ServiceResult.Error();
+        }
+
+        public List<AccountGameViewModel> GetAllByUserId(int userId)
+        {
+            var model = _context.
+                  AccountGames.
+                  Include(c => c.Game).
+                  Where(c => c.UserId.Equals(userId)).
+                  Select(c => new AccountGameViewModel
+                  {
+                      BuyDate = c.BuyDate,
+                      BuyState = (int)c.BuyState,
+                      CreateDate = c.CreateDate,
+                      Description = c.Description,
+                      Id = c.Id,
+                      IsActive = c.IsActive,
+                      IsDone = c.IsDone,
+                      Level = c.Level,
+                      Price = c.Price,
+                      IsDeActiveByAdmin = c.IsDeActiveByAdmin,
+                      ReasonForCancel = c.ReasonForCancel,
+                      ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
+                      State = (int)c.State,
+                      RequestDate = c.RequestDate,
+                      GameDisplayName = c.Game.DisplayName,
+                      GameId = c.GameId,
+                      GameName = c.Game.Name
+                  }).
+                  ToList();
+
+            return model;
         }
     }
 }
