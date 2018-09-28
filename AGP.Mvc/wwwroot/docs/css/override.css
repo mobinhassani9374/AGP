@@ -138,3 +138,53 @@ input[type=file] {
 .height-auto {
     height:auto !important;
 }
+
+.subfooter {
+    background-color: #222;
+    border-top: 2px solid #FC4B6C;
+    border-bottom: 2px solid #FC4B6C;
+    padding:10px 15px;
+    overflow:hidden;
+}
+
+.subfooter__title {
+    color:#00897B;
+    font-size:16px;
+    font-weight:500;
+    text-align:right;
+    padding-bottom:13px;
+    border-bottom:1px dotted #eee;
+}
+
+.subfooter__menu {
+   margin:0;
+   padding:0;
+   list-style-type:none;
+}
+
+
+.subfooter__menu__item {
+    padding:10px 0;
+   
+}
+
+
+.subfooter__menu__item  a {
+    color:#fff;
+    transition:all 0.3s;
+   font-weight:400;
+   font-size:13px;
+}
+
+    .subfooter__menu__item a:hover {
+        color:#00897B;
+        margin-right:10px;
+    }
+.subfooter__desc {
+    color:#fff;
+    text-align:right;
+    font-weight:400;
+    font-size:13px;
+    padding:10px 0;
+}
+
