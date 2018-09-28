@@ -13,7 +13,19 @@ namespace AGP.DataLayer.Mapper
         {
             builder.HasKey(c=>c.Id);
 
+            builder.
+                HasOne(c => c.User).
+                WithMany(c => c.AccountGames).
+                HasForeignKey(c => c.UserId).
+                OnDelete(DeleteBehavior
+                .Cascade);
 
+            builder.
+                HasOne(c => c.Game).
+                WithMany(c => c.AccountGames).
+                HasForeignKey(c => c.GameId).
+                OnDelete(DeleteBehavior
+                .Cascade);
         }
     }
 }
