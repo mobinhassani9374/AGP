@@ -47,6 +47,7 @@ namespace AGP.Mvc
             services.AddScoped<UserManager>();
             services.AddScoped<LogServiceRepository>();
             services.AddScoped<GameRepository>();
+            services.AddScoped<AccountGameRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

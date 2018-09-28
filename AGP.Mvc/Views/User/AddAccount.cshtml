@@ -1,0 +1,34 @@
+﻿@using AGP.Domain.ViewModel.AccountGame
+@model AccountGameCreateViewModel
+@{
+    ViewData["Title"] = "AddAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var games =(List<SelectListItem>) ViewBag.Games;
+}
+<form asp-controller="User" asp-action="AddAccount" method="post">
+
+    <div class="title">اضافه نمودن اکانت بازی </div>
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+        <div asp-validation-summary="All" class="alert alert-danger"></div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        if ((bool)TempData["Success"])
+        {
+            <div class="alert alert-success">@(TempData["Message"])</div>
+        }
+        else
+        {
+            <div class="alert alert-warning">@(TempData["Message"])</div>
+        }
+
+    }
+    <p>انتخاب بازی : <select asp-for="GameId" asp-items="@games"></select></p>
+    <p>Level یا سطح بازی : <input type="text" asp-for="Level" required /></p>
+    <p>توضیحات : <textarea required asp-for="Description"></textarea></p>
+    <p>قیمت : <input type="number" required asp-for="Price" /></p>
+    <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="اضافه نمودن" />
+</form>
+
+
