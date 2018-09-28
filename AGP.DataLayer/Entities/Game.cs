@@ -11,5 +11,7 @@ namespace AGP.DataLayer.Entities
         public string DisplayName { get; set; }
         public DateTime CreatDate { get; set; }
         public ICollection<ImageGame> Images { get; set; }
+
+        public ICollection<AccountGame> AccountGames { get; set; }
     }
 }
