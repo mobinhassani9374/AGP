@@ -4,7 +4,7 @@
 }
 
 main .box {
-    overflow:auto;
+    
     margin-bottom:0;
 }
 
@@ -133,4 +133,8 @@ main .box-admin {
 input[type=file] {
     display: block;
     margin: 15px 0;
+}
+
+.height-auto {
+    height:auto !important;
 }
