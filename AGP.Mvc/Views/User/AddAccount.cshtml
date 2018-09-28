@@ -14,75 +14,77 @@
     </ol>
 </nav>
 
-@Html.Partial("_UserPartial")
-
-<div class="col-md-9 col-sm-7 col-sx-12">
-    <div class="box form-material padding-10">
-        <div class="title">اضافه نمودن اکانت بازی</div>
-        <div class="description">
-            از این قسمت می توانید یک اکانت اضافه کنید
-        </div>
-        <form asp-controller="User" asp-action="AddAccount" method="post">
-
-            @if (ViewData.ModelState.ErrorCount > 0)
-            {
-                <div asp-validation-summary="All" class="alert alert-danger"></div>
-            }
-            @if (TempData["Success"] != null)
-            {
-                if ((bool)TempData["Success"])
-                {
-                    <div class="alert alert-success">@(TempData["Message"])</div>
-                }
-                else
-                {
-                    <div class="alert alert-warning">@(TempData["Message"])</div>
-                }
-
-            }
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label>نام بازی </label>
-                    <select required class="form-control" style="color: #999 !important;" asp-for="GameId" asp-items="@games"> </select>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label for="example-email">قیمت (تومان)</label>
-                    <input type="hidden"  asp-for="Price" >
-                    <input type="text" required   name="displayPrice" class="form-control" placeholder="قیمت پیشنهادی خود را وارد کنید ">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label for="example-email">سطح بازی (level)</label>
-                    <input type="number" required min="0" asp-for="Level" class="form-control" placeholder="  سطح بازی  را وارد کنید ">
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <label for="example-email">توضیحات</label>
-                    <textarea rows="5" asp-for="Description" required class="form-control"></textarea>
-                </div>
-            </div>
-
-            <input type="submit" class="btn  btn-primary pull-right margin-top-20" value="ثبت اطلاعات" />
-
-        </form>
-    </div>
+<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
+    @Html.Partial("_UserPartial")
 </div>
 
-<script>
+    <div class="col-md-9 col-sm-7 col-sx-12">
+        <div class="box form-material padding-10">
+            <div class="title">اضافه نمودن اکانت بازی</div>
+            <div class="description">
+                از این قسمت می توانید یک اکانت اضافه کنید
+            </div>
+            <form asp-controller="User" asp-action="AddAccount" method="post">
 
-    $(function () { 
-        $('input[name="displayPrice"]').bind('keyup change click', function () {
-            var val = $(this).val().replace(/,/g, '');
-            var seperator = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            $(this).val(seperator);
-            $('input[name="Price"]').val(val);
-            console.log(seperator);
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
+                @if (TempData["Success"] != null)
+                {
+                    if ((bool)TempData["Success"])
+                    {
+                        <div class="alert alert-success">@(TempData["Message"])</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">@(TempData["Message"])</div>
+                    }
+
+                }
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>نام بازی </label>
+                        <select required class="form-control" style="color: #999 !important;" asp-for="GameId" asp-items="@games"> </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">قیمت (تومان)</label>
+                        <input type="hidden" asp-for="Price">
+                        <input type="text" required name="displayPrice" class="form-control" placeholder="قیمت پیشنهادی خود را وارد کنید ">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">سطح بازی (level)</label>
+                        <input type="text" required  asp-for="Level" class="form-control" placeholder="  سطح بازی  را وارد کنید ">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">توضیحات</label>
+                        <textarea rows="5" asp-for="Description" required class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn  btn-primary pull-right margin-top-20" value="ثبت اطلاعات" />
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        $(function () {
+            $('input[name="displayPrice"]').bind('keyup change click', function () {
+                var val = $(this).val().replace(/,/g, '');
+                var seperator = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                $(this).val(seperator);
+                $('input[name="Price"]').val(val);
+                console.log(seperator);
+            })
         })
-    })
-</script>
+    </script>
 

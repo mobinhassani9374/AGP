@@ -1,4 +1,4 @@
-﻿<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
+﻿
     <div class="box ">
         <div class="profile height-auto">
             <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
@@ -7,11 +7,11 @@
             <ul class="profile__menu">
 
                 <li class="profile__menu__item">
-                    <a class="active" asp-controller="User" asp-action="AccountList">لیست اکانت های من </a>
+                    <a data-id="list-account" asp-controller="User" asp-action="AccountList">لیست اکانت های من </a>
                 </li>
 
                 <li class="profile__menu__item">
-                    <a asp-controller="User" asp-action="AddAccount">اضافه نمودن اکانت جدید </a>
+                    <a data-id="add-account" asp-controller="User" asp-action="AddAccount">اضافه نمودن اکانت جدید </a>
                 </li>
 
                 <li class="profile__menu__item">
@@ -21,4 +21,16 @@
             </ul>
         </div>
     </div>
-</div>
+
+<script>
+
+    $(function () {
+        var url = window.location.pathname.toString().toLowerCase();
+        console.log(url);
+        switch (url) {
+            case '/user/accountlist': $('[data-id="list-account"]').addClass('active');  break;
+            case '/user/addaccount': $('[data-id="add-account"]').addClass('active'); break;
+            default: '';
+        }
+    })
+</script>
