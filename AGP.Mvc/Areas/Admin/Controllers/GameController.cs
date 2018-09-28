@@ -31,12 +31,12 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            var model = _gameRepository.GetAll();
+
             return View(model);
         }
         public IActionResult Create()
         {
-            var model = _gameRepository.GetAll();
-
             ViewBag.GameIamgeMaxFileSize = Configuration.GetValue<long>("GameIamgeMaxFileSize", 60);
             return View();
         }
