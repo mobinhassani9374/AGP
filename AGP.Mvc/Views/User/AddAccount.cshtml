@@ -14,30 +14,8 @@
     </ol>
 </nav>
 
-<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
-    <div class="box ">
-        <div class="profile height-auto">
-            <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
-            <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
-            <h4 class="profile__name">مهدی حسنی </h4>
-            <ul class="profile__menu">
+@Html.Partial("_UserPartial")
 
-                <li class="profile__menu__item">
-                    <a class="active" href="#">لیست اکانت های من </a>
-                </li>
-
-                <li class="profile__menu__item">
-                    <a href="#">اضافه نمودن اکانت جدید </a>
-                </li>
-
-                <li class="profile__menu__item">
-                    <a href="#">پروفایل من </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="col-md-9 col-sm-7 col-sx-12">
     <div class="box form-material padding-10">
         <div class="title">اضافه نمودن اکانت بازی</div>
@@ -78,7 +56,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label for="example-email">سطح بازی (level)</label>
-                    <input  type="number" required  min="0" asp-for="Level" class="form-control" placeholder="  سطح بازی  را وارد کنید ">
+                    <input type="number" required min="0" asp-for="Level" class="form-control" placeholder="  سطح بازی  را وارد کنید ">
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
