@@ -1,34 +1,88 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
 @model AccountGameCreateViewModel
 @{
-    ViewData["Title"] = "AddAccount";
+    ViewData["Title"] = "اضافه نمودن اکانت بازی - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var games =(List<SelectListItem>) ViewBag.Games;
+    var games = (List<SelectListItem>)ViewBag.Games;
 }
-<form asp-controller="User" asp-action="AddAccount" method="post">
 
-    <div class="title">اضافه نمودن اکانت بازی </div>
-    @if (ViewData.ModelState.ErrorCount > 0)
-    {
-        <div asp-validation-summary="All" class="alert alert-danger"></div>
-    }
-    @if (TempData["Success"] != null)
-    {
-        if ((bool)TempData["Success"])
-        {
-            <div class="alert alert-success">@(TempData["Message"])</div>
-        }
-        else
-        {
-            <div class="alert alert-warning">@(TempData["Message"])</div>
-        }
+<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
+    <div class="box ">
+        <div class="profile height-auto">
+            <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
+            <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
+            <h4 class="profile__name">مهدی حسنی </h4>
+            <ul class="profile__menu">
 
-    }
-    <p>انتخاب بازی : <select asp-for="GameId" asp-items="@games"></select></p>
-    <p>Level یا سطح بازی : <input type="text" asp-for="Level" required /></p>
-    <p>توضیحات : <textarea required asp-for="Description"></textarea></p>
-    <p>قیمت : <input type="number" required asp-for="Price" /></p>
-    <input type="submit" class="btn  btn-primary pull-right margin-top-20 padding-10 width-100" value="اضافه نمودن" />
-</form>
+                <li class="profile__menu__item">
+                    <a class="active" href="#">لیست اکانت های من </a>
+                </li>
 
+                <li class="profile__menu__item">
+                    <a href="#">اضافه نمودن اکانت جدید </a>
+                </li>
+
+                <li class="profile__menu__item">
+                    <a href="#">پروفایل من </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-sm-7 col-sx-12">
+    <div class="box form-material padding-10">
+        <div class="title">اضافه نمودن اکانت بازی</div>
+        <div class="description">
+            از این قسمت می توانید یک اکانت اضافه کنید
+        </div>
+        <form asp-controller="User" asp-action="AddAccount" method="post">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                if ((bool)TempData["Success"])
+                {
+                    <div class="alert alert-success">@(TempData["Message"])</div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">@(TempData["Message"])</div>
+                }
+
+            }
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>نام بازی </label>
+                    <select required class="form-control" style="color: #999 !important;" asp-for="GameId" asp-items="@games"> </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">قیمت (تومان)</label>
+                    <input type="number" required min="0" asp-for="Price" class="form-control" placeholder="قیمت پیشنهادی خود را وارد کنید ">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">سطح بازی (level)</label>
+                    <input  type="number" required  min="0" asp-for="Level" class="form-control" placeholder="  سطح بازی  را وارد کنید ">
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="example-email">توضیحات</label>
+                    <textarea rows="5" asp-for="Description" required class="form-control"></textarea>
+                </div>
+            </div>
+
+            <input type="submit" class="btn  btn-primary pull-right margin-top-20" value="ثبت اطلاعات" />
+
+        </form>
+    </div>
+</div>
 
