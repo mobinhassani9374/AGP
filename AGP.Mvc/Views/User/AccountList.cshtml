@@ -1,78 +1,123 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
 @model List<AccountGameViewModel>
 @{
-    ViewData["Title"] = "AccountList";
+    ViewData["Title"] = "لیست اکانت های من - اکانت پی";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var count = 1;
 }
 
-<table>
-    <thead>
-        <tr>
-            <th>ردیف</th>
-            <th>نام بازی</th>
-            <th>سطح </th>
-            <th>تاریخ بار گزاری</th>
-            <th>قیمت </th>
-            <th>وضعیت </th>
-            <th>وضعیت خرید </th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="fa-iransansdn">@(count++)</td>
-                <td>@item.GameDisplayName </td>
-                <td class="fa-iransansdn">@item.Level</td>
-                <td class="fa-iransansdn">@item.CreateDate</td>
-                <td class="seperator color-black">@item.Price</td>
-                <td>
-                    @if (item.State == 1)
-                    {
-                        <span class="text-warning">در حال بررسی</span>
-                    }
-                    else if (item.State == 2)
-                    {
-                        <span class="text-success">تایید شده</span>
-                    }
-                    else
-                    {
-                        <span class="text-danger">رد شده است</span>
-                    }
-                </td>
-                <td class="text-info">
-                    @if (item.BuyState == 1)
-                    {
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">صفحه اصلی </a></li>
+        <li class="breadcrumb-item active" aria-current="page"> ناحیه کاربری </li>
+        <li class="breadcrumb-item active" aria-current="page"> لیست اکانت های من </li>
+    </ol>
+</nav>
 
-                    <span>هنوز به فروش نرسیده است</span>
-                    }
-                    else if (item.BuyState == 2)
-                    {
+<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
+    <div class="box ">
+        <div class="profile height-auto">
+            <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
+            <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
+            <h4 class="profile__name">مهدی حسنی </h4>
+            <ul class="profile__menu">
 
-                    <span>یک درخواست خرید برای اکانت وجود دارد</span>
-                    }
-                    else if (item.BuyState == 3)
-                    {
-                    <span>درخواست خرید ناموفق</span>
+                <li class="profile__menu__item">
+                    <a class="active" href="#">لیست اکانت های من </a>
+                </li>
 
-                    }
-                    else
-                    {
-                    <span>به فروش رسید</span>
+                <li class="profile__menu__item">
+                    <a href="#">اضافه نمودن اکانت جدید </a>
+                </li>
 
-                    }
-                </td>
-                <td>
-                    <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
-                    <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
-                    <a data-toggle="tooltip" data-width="980" data-height="500" title="مشاهده جزئیات" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
-                </td>
-            </tr>
+                <li class="profile__menu__item">
+                    <a href="#">پروفایل من </a>
+                </li>
 
-        }
+            </ul>
+        </div>
+    </div>
+</div>
 
-    </tbody>
-</table>
+<div class="col-md-9 col-sm-7 col-sx-12">
+    <div class="box form-material padding-10">
+        <form>
+            <div class="title">لیست اکانت های من</div>
+            <div class="description">
+                از این قسمت می توانید اکانت های خود را مشاهده و مدیریت کنید
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام بازی</th>
+                            <th>سطح </th>
+                            <th>تاریخ بار گزاری</th>
+                            <th>قیمت </th>
+                            <th>وضعیت </th>
+                            <th>وضعیت خرید </th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fa-iransansdn">@(count++)</td>
+                                <td>@item.GameDisplayName </td>
+                                <td class="fa-iransansdn">@item.Level</td>
+                                <td class="fa-iransansdn">@item.CreateDate</td>
+                                <td class="seperator color-black">@item.Price</td>
+                                <td>
+                                    @if (item.State == 1)
+                                    {
+                                        <span class="text-warning">در حال بررسی</span>
+                                    }
+                                    else if (item.State == 2)
+                                    {
+                                        <span class="text-success">تایید شده</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">رد شده است</span>
+                                    }
+                                </td>
+                                <td class="text-info">
+                                    @if (item.BuyState == 1)
+                                    {
+
+                                        <span>هنوز به فروش نرسیده است</span>
+                                    }
+                                    else if (item.BuyState == 2)
+                                    {
+
+                                        <span>یک درخواست خرید برای اکانت وجود دارد</span>
+                                    }
+                                    else if (item.BuyState == 3)
+                                    {
+                                        <span>درخواست خرید ناموفق</span>
+
+                                    }
+                                    else
+                                    {
+                                        <span>به فروش رسید</span>
+
+                                    }
+                                </td>
+                                <td>
+                                    <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
+                                    <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
+                                    <a data-toggle="tooltip" data-width="980" data-height="500" title="مشاهده جزئیات" href="http://mahdi.ferdows110.ir" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
 

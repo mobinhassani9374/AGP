@@ -6,6 +6,14 @@
     var games = (List<SelectListItem>)ViewBag.Games;
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">صفحه اصلی </a></li>
+        <li class="breadcrumb-item active" aria-current="page"> ناحیه کاربری </li>
+        <li class="breadcrumb-item active" aria-current="page">   اضافه نمودن اکانت بازی  </li>
+    </ol>
+</nav>
+
 <div class="col-md-3 col-sm-5 col-xs-12 pull-left">
     <div class="box ">
         <div class="profile height-auto">
