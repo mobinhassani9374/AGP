@@ -56,8 +56,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>عکس بازی </th>
-                            <th>ایا حذف شود ؟؟</th>
+                            <th style="width:33.3%">عکس بازی </th>
+                            <th style="width:33.3%">ایا حذف شود ؟؟</th>
+                            <th style="width:33.3%">تعداد استفاده شده برای اکانت ها</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,11 +75,12 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="~/Attachment/@(item.ImageName)" style="width:100px;height:100px;" />
+                                        <img src="~/Attachment/@(item.ImageName)" class="img-thumbnail" style="width:60px;height:60px;" />
                                     </td>
                                     <td>
                                         <input type="checkbox" name="deleteImages" value="@(item.Id)"
                                     </td>
+                                    <td class="fa-iransansdn">12</td>
                                 </tr>
                             }
                         }
