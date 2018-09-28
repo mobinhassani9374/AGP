@@ -17,5 +17,7 @@ namespace AGP.DataLayer.Entities
         public bool IsActive { get; set; }
         public bool IsAdmin { get; set; }
         public ICollection<LogService> LogServices { get; set; }
+
+        public ICollection<AccountGame> AccountGames { get; set; }
     }
 }
