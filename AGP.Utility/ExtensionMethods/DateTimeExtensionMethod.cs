@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace AGP.Utility.ExtensionMethods
@@ -8,7 +9,8 @@ namespace AGP.Utility.ExtensionMethods
     {
         public static string ToShortTime(this DateTime date)
         {
-            return $"{date.Year} / {date.Month} / {date.Day}";
+            PersianCalendar p = new PersianCalendar();
+            return $"{p.GetDayOfMonth(date)} / {p.GetMonth(date)} / {p.GetYear(date)}";
         }
     }
 }
