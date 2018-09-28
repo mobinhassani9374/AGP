@@ -28,21 +28,42 @@
                 <td class="fa-iransansdn">@item.Level</td>
                 <td class="fa-iransansdn">@item.CreateDate</td>
                 <td class="seperator color-black">@item.Price</td>
-                <td class="text-success">
+                <td>
                     @if (item.State == 1)
                     {
-                        <span>در حال بررسی</span>
+                        <span class="text-warning">در حال بررسی</span>
                     }
                     else if (item.State == 2)
                     {
-                        <span>تایید شده</span>
+                        <span class="text-success">تایید شده</span>
                     }
                     else
                     {
-                        <span>رد شده است</span>
+                        <span class="text-danger">رد شده است</span>
                     }
                 </td>
-                <td class="text-info">هنوز خریداری نشده است </td>
+                <td class="text-info">
+                    @if (item.BuyState == 1)
+                    {
+
+                    <span>هنوز به فروش نرسیده است</span>
+                    }
+                    else if (item.BuyState == 2)
+                    {
+
+                    <span>یک درخواست خرید برای اکانت وجود دارد</span>
+                    }
+                    else if (item.BuyState == 3)
+                    {
+                    <span>درخواست خرید ناموفق</span>
+
+                    }
+                    else
+                    {
+                    <span>به فروش رسید</span>
+
+                    }
+                </td>
                 <td>
                     <a data-toggle="tooltip" title="ویرایش" href="#"><i class="pe-7s-edit size-20"></i></a>
                     <a data-toggle="tooltip" class="delete" title="حذف "><i class="pe-7s-trash size-20"></i></a>
