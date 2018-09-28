@@ -64,7 +64,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
 
                     files.ForEach(c =>
                     {
-                        var imageName = $"{Guid.NewGuid()}.{Path.GetExtension(c.FileName)}";
+                        var imageName = $"{Guid.NewGuid()}{Path.GetExtension(c.FileName)}";
 
                         var path = Path.Combine(_env.WebRootPath, "Attachment", imageName);
 
@@ -144,7 +144,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
                 List<string> imgagesName = new List<string>();
                 files.ForEach(c =>
                 {
-                    var imageName = $"{Guid.NewGuid()}.{Path.GetExtension(c.FileName)}";
+                    var imageName = $"{Guid.NewGuid()}{Path.GetExtension(c.FileName)}";
 
                     var path = Path.Combine(_env.WebRootPath, "Attachment", imageName);
 
