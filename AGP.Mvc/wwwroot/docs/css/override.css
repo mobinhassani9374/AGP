@@ -141,8 +141,6 @@ input[type=file] {
 
 .subfooter {
     background-color: #222;
-    border-top: 2px solid #FC4B6C;
-    border-bottom: 2px solid #FC4B6C;
     padding:10px 15px;
     overflow:hidden;
 }
