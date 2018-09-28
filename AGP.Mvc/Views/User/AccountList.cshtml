@@ -55,7 +55,7 @@
                             <th>نام بازی</th>
                             <th>سطح </th>
                             <th>تاریخ بار گزاری</th>
-                            <th>قیمت </th>
+                            <th>قیمت(تومان)</th>
                             <th>وضعیت </th>
                             <th>وضعیت خرید </th>
                             <th>عملیات</th>
@@ -69,7 +69,7 @@
                                 <td>@item.GameDisplayName </td>
                                 <td class="fa-iransansdn">@item.Level</td>
                                 <td class="fa-iransansdn">@item.CreateDate.ToShortTime()</td>
-                                <td class="seperator color-black">@item.Price</td>
+                                <td class="seperator color-black">@item.Price.ToString("#,##")</td>
                                 <td>
                                     @if (item.State == 1)
                                     {
