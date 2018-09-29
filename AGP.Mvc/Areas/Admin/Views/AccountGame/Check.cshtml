@@ -1,34 +1,82 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
 @model AccountGameViewModel
 @{
-    ViewData["Title"] = "Check";
+    ViewData["Title"] = "بررسی اکانت - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p>ویرایش نمودن اکانت</p>
-<form asp-action="Edit" asp-controller="AccountGame" asp-area="Admin">
-    @if (ViewData.ModelState.ErrorCount > 0)
-    {
-        <div asp-validation-summary="All" class="alert alert-danger"></div>
-    }
-    @if (TempData["Success"] != null)
-    {
-        if ((bool)TempData["Success"])
-        {
-            <div class="alert alert-success">@(TempData["Message"])</div>
-        }
-        else
-        {
-            <div class="alert alert-warning">@(TempData["Message"])</div>
-        }
 
-    }
-    <input type="hidden" asp-for="Id" />
-    <p>سطح : <input type="text" asp-for="Level" required /></p>
-    <p>قیمت : <input type="text" asp-for="Price" required /></p>
-    <p>توضیحات : <textarea asp-for="Description" required></textarea></p>
-    <input type="submit" value="ویرایش" />
-</form>
-<p>لینک ها</p>
-<p><a href="#">تایید</a></p>
-<p><a href="#">رد</a></p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-area="Admin"> پنل ادمین </a></li>
+        <li class="breadcrumb-item"><a asp-action="Waiting" asp-controller="AccountGame"  asp-area="Admin">لیست اکانت های در حال بررسی</a></li>
+        <li class="breadcrumb-item active" aria-current="page">بررسی اکانت  </li>
+    </ol>
+</nav>
+
+<div class="col-md-6 col-sm-6 col-sx-12">
+    <div class="box form-material padding-10">
+        <div class="scroll">
+            <form asp-action="Edit" asp-controller="AccountGame" asp-area="Admin">
+
+                <div class="title">ویرایش نمودن اکانت</div>
+
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
+                @if (TempData["Success"] != null)
+                {
+                    if ((bool)TempData["Success"])
+                    {
+                        <div class="alert alert-success">@(TempData["Message"])</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">@(TempData["Message"])</div>
+                    }
+
+                }
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">قیمت (تومان)</label>
+                        <input type="number" asp-for="Price" required class="form-control" placeholder="قیمت  را وارد کنید ">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">سطح بازی (level)</label>
+                        <input type="text" required asp-for="Level" class="form-control" placeholder="  سطح بازی را وارد کنید ">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="example-email">توضیحات</label>
+                        <textarea rows="5" asp-for="Description" required class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn  btn-primary pull-right margin-top-20" value="ویرایش اطلاعات" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+    <div class="box form-matrial padding-10">
+        <div class="scroll">
+            <div class="title"> تایید یا  رد نمودن اکانت </div>
+            <div class="description">
+                از این قسمت می توانید اکانت را تایید یا رد کنید
+            </div>
+
+            <div class="description">
+                <a class="btn btn-success width-120">تایید </a>
+                <a class="btn btn-danger width-120">رد </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
