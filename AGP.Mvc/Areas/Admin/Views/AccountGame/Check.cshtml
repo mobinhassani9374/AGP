@@ -17,7 +17,7 @@
     <div class="box form-material padding-10">
         <div class="scroll">
             <form asp-action="Edit" asp-controller="AccountGame" asp-area="Admin">
-
+                <input type="hidden" asp-for="Id"/>
                 <div class="title">ویرایش نمودن اکانت</div>
 
                 @if (ViewData.ModelState.ErrorCount > 0)
