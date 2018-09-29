@@ -79,5 +79,31 @@ namespace AGP.DataLayer.Repositories
 
             return model;
         }
+
+        public List<AccountGameViewModel> Waiting()
+        {
+            var model = _context
+                .AccountGames
+                .Include(c => c.User)
+                .Include(c => c.Game)
+                .Where(c => c.State == Entities.AccountGameState.Waiting)
+                .Select(c => new AccountGameViewModel
+                {
+                    Id = c.Id,
+                    CreateDate = c.CreateDate,
+                    Description = c.Description,
+                    GameDisplayName = c.Game.DisplayName,
+                    GameName = c.Game.Name,
+                    GameId = c.GameId,
+                    IsActive = c.IsActive,
+                    Level = c.Level,
+                    Price = c.Price,
+                    UserId = c.UserId,
+                    UserFullName = c.User.FullName
+                })
+                .ToList();
+
+            return model;
+        }
     }
 }

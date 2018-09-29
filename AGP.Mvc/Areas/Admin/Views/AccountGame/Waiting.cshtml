@@ -1,0 +1,36 @@
+﻿@using AGP.Domain.ViewModel.AccountGame
+@model List<AccountGameViewModel>
+@{
+    ViewData["Title"] = "Waiting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 1;
+}
+<table>
+    <tr>
+        <td>#</td>
+        <td>نام و نام خانوداگی کاربر</td>
+        <td>نام بازی</td>
+        <td>سطح</td>
+        <td>قیمت</td>
+        <td>مشاهده پروفایل کاربر</td>
+        <td>بررسی</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(count++)</td>
+            <td>@item.UserFullName</td>
+            <td>@item.GameDisplayName</td>
+            <td>@item.Level</td>
+            <td>@item.Price</td>
+            <td><a asp-action="Profile" asp-controller="User" asp-route-id="@(item.UserId)">مشاهده</a></td>
+            <td>
+                <a asp-action="Check" asp-controller="AccountGame" asp-area="Admin" asp-route-id="@(item.Id)">بررسی</a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+
