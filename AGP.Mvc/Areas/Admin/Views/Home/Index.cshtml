@@ -37,7 +37,7 @@
         </div>
     </div>
 
-
+    
     <div class="col-md-3 col-sm-6 col-xs-12 gride__item pull-left">
         <div class="box box-admin padding-10">
             <div class="box-admin__top">
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <ul class="box-admin__menu">
-                <li class="box-admin__menu__item"><a asp-action="Waiting" asp-controller="AccountGame">لیست اکانت های در حال انتظار </a></li>
+                <li class="box-admin__menu__item"><a asp-action="Waiting" asp-controller="AccountGame">لیست اکانت های در حال انتظار <span class="badge fa-iransansdn">@(ViewBag.CountWaitingAccount)</span></a></li>
             </ul>
         </div>
     </div>
