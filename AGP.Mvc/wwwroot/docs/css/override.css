@@ -241,6 +241,17 @@ h1.titr {
         background-color: #7460EE;
         border-radius: 10px;
     }
+.badge {
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #00897B;
+    transition: all 0.3s;
+}
+
+.box-admin .box-admin__menu .box-admin__menu__item a:hover .badge {
+    color: #00897B;
+    background-color: #fff;
+}
 
 
 
