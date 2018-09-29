@@ -5,6 +5,7 @@ using System.Linq;
 using AGP.Domain.ViewModel.Game;
 using AGP.Domain.ViewModel.AccountGame;
 using Microsoft.EntityFrameworkCore;
+using AGP.Utility;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -102,6 +103,71 @@ namespace AGP.DataLayer.Repositories
                     UserFullName = c.User.FullName
                 })
                 .ToList();
+
+            return model;
+        }
+
+        public bool ExistById(int id)
+        {
+            var exist = _context.
+                AccountGames.
+                Any(c => c.Id.Equals(id));
+
+            return exist;
+        }
+
+        public bool AccountStateIsWaiting(int id)
+        {
+            return _context.AccountGames.Any(c => c.Id.Equals(id) && c.State == Entities.AccountGameState.Waiting);
+        }
+
+        public Utility.ServiceResult Update(AccountGameEditViewModel model)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id == model.Id);
+
+            entity.Description = model.Description;
+            entity.Level = model.Level;
+            entity.Price = model.Price;
+
+            _context.Update(entity);
+            var result = _context.SaveChanges();
+
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+
+        }
+
+        public AccountGameViewModel GetById(int id)
+        {
+            var model = _context
+               .AccountGames
+               .Include(c => c.User)
+               .Include(c => c.Game)
+               .Where(c => c.State == Entities.AccountGameState.Waiting)
+               .Select(c => new AccountGameViewModel
+               {
+                   Id = c.Id,
+                   CreateDate = c.CreateDate,
+                   Description = c.Description,
+                   GameDisplayName = c.Game.DisplayName,
+                   GameName = c.Game.Name,
+                   GameId = c.GameId,
+                   IsActive = c.IsActive,
+                   Level = c.Level,
+                   Price = c.Price,
+                   UserId = c.UserId,
+                   UserFullName = c.User.FullName,
+                   BuyDate = c.BuyDate,
+                   BuyState = (int)c.BuyState,
+                   IsDeActiveByAdmin = c.IsDeActiveByAdmin,
+                   IsDone = c.IsDone,
+                   ReasonForCancel = c.ReasonForCancel,
+                   RequestDate = c.RequestDate,
+                   State = (int)c.State,
+                   ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
+
+               })
+               .FirstOrDefault();
 
             return model;
         }
