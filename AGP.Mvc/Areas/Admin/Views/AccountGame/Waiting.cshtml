@@ -1,36 +1,72 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
 @model List<AccountGameViewModel>
 @{
-    ViewData["Title"] = "Waiting";
+    ViewData["Title"] = "لسیت اکانت های در حال بررسی - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var count = 1;
 }
-<table>
-    <tr>
-        <td>#</td>
-        <td>نام و نام خانوداگی کاربر</td>
-        <td>نام بازی</td>
-        <td>سطح</td>
-        <td>قیمت</td>
-        <td>مشاهده پروفایل کاربر</td>
-        <td>بررسی</td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@(count++)</td>
-            <td>@item.UserFullName</td>
-            <td>@item.GameDisplayName</td>
-            <td>@item.Level</td>
-            <td>@item.Price</td>
-            <td><a asp-action="Profile" asp-controller="User" asp-route-id="@(item.UserId)">مشاهده</a></td>
-            <td>
-                <a asp-action="Check" asp-controller="AccountGame" asp-area="Admin" asp-route-id="@(item.Id)">بررسی</a>
-            </td>
-        </tr>
 
-    }
-</table>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home" asp-area="Admin">پنل ادمین </a></li>
+        <li class="breadcrumb-item active" aria-current="page">لسیت اکانت ها</li>
+        <li class="breadcrumb-item active" aria-current="page">لسیت اکانت های در حال بررسی</li>
+    </ol>
+</nav>
 
+<div class="col-md-12">
+    <div class="box form-material padding-10">
+        <form>
+            <div class="title">لسیت اکانت های در حال بررسی</div>
+            <div class="description">
+                از این قسمت می توانید لسیت اکانت های در حال بررسی  ثبت شده در سامانه را مشاهده کنید
+            </div>
+
+            <div class="description">
+              وآنها را رد یا تایید کنید 
+            </div>
+
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>نام و نام خانوداگی کاربر</td>
+                            <td>نام بازی</td>
+                            <td>سطح</td>
+                            <td>قیمت</td>
+                            <td style="width:13%">مشاهده پروفایل کاربر</td>
+                            <td style="width:6%;">بررسی</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fa-iransansdn">@(count++)</td>
+                                <td>@item.UserFullName</td>
+                                <td>@item.GameDisplayName</td>
+                                <td>@item.Level</td>
+                                <td class="seperator color-black">@item.Price</td>
+                                <td>
+                                    <a asp-action="Profile" data-toggle="tooltip" title="مشاهده" asp-controller="User" asp-route-id="@(item.UserId)">
+                                        <span class="pe-7s-look"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="Check" asp-controller="AccountGame" asp-area="Admin" asp-route-id="@(item.Id)">
+                                        <span class="pe-7s-note"></span>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
 
 
