@@ -8,13 +8,55 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>CancelAccount</title>
+    <title>رد نمودن اکانت </title>
+
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- if RTL website code below delete comment and added dir="rtl" to html tag -->
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.rtl.css">
+    <link href="~/docs/fonts/font-fa.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/docs/css/styles.css" />
+    <link rel="stylesheet" href="~/docs/css/override.css?v=0.0.9" />
+
+    <script src="~/docs/lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="~/docs/lib/bootstrap/bootstrap.min.js"></script>
+
+    @*fancy*@
+
+    <script src="~/docs/lib/fancybox2.1.5/js/jquery.fancybox.pack.js"></script>
+    <link href="~/docs/lib/fancybox2.1.5/css/jquery.fancybox.css" rel="stylesheet" />
+
 </head>
-<body>
-    <form asp-action="CancelAccount" asp-controller="AccountGame" method="post">
-        <p>دلیل رد اکانت : <textarea name="reason" required></textarea></p>
-        <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)"/>
-        <input type="submit" value="رد"/>
-    </form>
+<body >
+
+    <main >
+
+        <div class="col-md-12" style="direction:rtl;text-align:right;">
+            <div class="box form-material padding-10">
+                <form asp-action="CancelAccount" asp-controller="AccountGame" method="post" onsubmit="return closeFancy();">
+                    <div class="title"> رد نمودن اکانت </div>
+                    <div class="description">
+                        از این قسمت می توانید اکانت را با ذکر دلیل حذف کنید . کاربر را دلیل را مشاهده می کند
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="example-email">دلیل رد اکانت </label>
+                            <textarea rows="5" required="" class="form-control"  id="reason" name="reason"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
+                    <input type="submit" class="btn btn-danger width-120" value="رد" data-id="cancle" />
+
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function closeFancy() {
+            $.fancybox.close();
+        }
+    </script>
+
 </body>
 </html>
