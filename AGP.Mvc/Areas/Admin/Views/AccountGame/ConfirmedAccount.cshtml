@@ -16,7 +16,7 @@
         <p>انتخاب عکس</p>
         @foreach(var imageName in images)
         {
-            <p><img src="~/Attachment/@imageName"/><input type="radio" name="imageName" value="@imageName"/></p>
+            <p><img src="~/Attachment/@imageName" style="width:60px;height:60px;"/><input type="radio" name="imageName" value="@imageName"/></p>
             <p>تعداد دفعات استفاده : 2</p>
         }
         <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
