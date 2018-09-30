@@ -15,9 +15,12 @@ namespace AGP.Mvc.Areas.Admin.Controllers
     public class AccountGameController : Controller
     {
         private readonly AccountGameRepository _accountGameRepository;
-        public AccountGameController(AccountGameRepository accountGameRepository)
+        private readonly GameRepository _gameRepository;
+        public AccountGameController(AccountGameRepository accountGameRepository,
+            GameRepository gameRepository)
         {
             _accountGameRepository = accountGameRepository;
+            _gameRepository = gameRepository;
         }
         public IActionResult Waiting()
         {
@@ -68,6 +71,33 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         public IActionResult CancelAccount(int accountGameId, string reason)
         {
             var result = _accountGameRepository.DoCancel(accountGameId, reason);
+            TempData.AddResult(result);
+            return RedirectToAction(nameof(Waiting));
+        }
+
+        public IActionResult ConfirmedAccount(int id)
+        {
+            var exist = _accountGameRepository.ExistById(id);
+
+            if (!exist) return RedirectToAction(nameof(Waiting));
+
+            if (!_accountGameRepository.AccountStateIsWaiting(id))
+                return RedirectToAction(nameof(Waiting));
+
+            ViewBag.AccountGameId = id;
+
+            var gameId = _accountGameRepository.GetGameId(id);
+
+            ViewBag.Images = _gameRepository.GetImageNames(gameId);
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmedAccount(int accountGameId, string imageName)
+        {
+            var result = _accountGameRepository.DoConfirmed(accountGameId, imageName);
             TempData.AddResult(result);
             return RedirectToAction(nameof(Waiting));
         }

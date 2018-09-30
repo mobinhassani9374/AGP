@@ -172,11 +172,35 @@ namespace AGP.DataLayer.Repositories
             return model;
         }
 
+        public int GetGameId(int id)
+        {
+          var gameId=  _context.
+                AccountGames.
+                Where(c => c.Id.Equals(id)).
+                Select(c => c.GameId).
+                FirstOrDefault();
+
+            return gameId;
+        }
+
         public ServiceResult DoCancel(int id, string reason)
         {
             var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
             entity.ReasonForCancel = reason;
             entity.State = Entities.AccountGameState.Cancel;
+
+            _context.Update(entity);
+            var result = _context.SaveChanges();
+
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+        }
+
+        public ServiceResult DoConfirmed(int id, string imageName)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+            entity.ImageName = imageName;
+            entity.State = Entities.AccountGameState.Confirmed;
 
             _context.Update(entity);
             var result = _context.SaveChanges();

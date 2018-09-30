@@ -27,6 +27,7 @@ namespace AGP.DataLayer.Entities
         public AccountGameBuyState BuyState { get; set; }
         public bool IsDeActiveByAdmin { get; set; }
         public string ReasonForDeActiveByAdmin { get; set; }
+        public string ImageName { get; set; }
 
         public User User { get; set; }
         public int UserId { get; set; }
