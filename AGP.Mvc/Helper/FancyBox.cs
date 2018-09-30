@@ -12,8 +12,9 @@ namespace AGP.Mvc.Helper
         {
             var script = "<script>" +
                 "$.fancybox.close();" +
-                $"window.location={url}" +
+                $"window.location='{url}';" +
                 "</script>";
+
             return new ContentResult() { Content = script, ContentType = "text/html" };
         }
     }
