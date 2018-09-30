@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+    var images = (List<string>)ViewBag.Images;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConfirmedAccount</title>
+</head>
+<body>
+    <form asp-action="ConfirmedAccount" asp-controller="AccountGame" method="post">
+        <p>انتخاب عکس</p>
+        @foreach(var imageName in images)
+        {
+            <p><img src="~/Attachment/@imageName"/><input type="radio" name="imageName" value="@imageName"/></p>
+            <p>تعداد دفعات استفاده : 2</p>
+        }
+        <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
+        <input type="submit" value="تایید" />
+    </form>
+</body>
+</html>

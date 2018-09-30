@@ -25,7 +25,7 @@ namespace AGP.Mvc.Controllers
         {
             return View();
         }
-        #region اضافه نمودن اکانت
+        #region  اکانت
         public IActionResult AddAccount()
         {
             var games = _accountGameRepository.GetAllGames();
@@ -68,6 +68,26 @@ namespace AGP.Mvc.Controllers
 
             var model = _accountGameRepository.GetAllByUserId(userId);
 
+
+            return View(model);
+        }
+
+        public IActionResult AccountDetail(int id)
+        {
+            var userId = User.GetUserId();
+
+            // ایا اکانت موجود می باشد
+            var exist = _accountGameRepository.ExistById(id);
+
+            if (!exist) return RedirectToAction(nameof(AccountList));
+
+            // آیا اکانت توسط کاربر ایجاد شده است
+            var isCreateByUser = _accountGameRepository.IsCreateByUser(userId, id);
+
+            if(!isCreateByUser)
+                return RedirectToAction(nameof(AccountList));
+
+            var model = _accountGameRepository.GetById(id);
 
             return View(model);
         }

@@ -165,11 +165,22 @@ namespace AGP.DataLayer.Repositories
                    RequestDate = c.RequestDate,
                    State = (int)c.State,
                    ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
-
+                   ImageName = c.ImageName
                })
                .FirstOrDefault();
 
             return model;
+        }
+
+        public int GetGameId(int id)
+        {
+            var gameId = _context.
+                  AccountGames.
+                  Where(c => c.Id.Equals(id)).
+                  Select(c => c.GameId).
+                  FirstOrDefault();
+
+            return gameId;
         }
 
         public ServiceResult DoCancel(int id, string reason)
@@ -183,6 +194,28 @@ namespace AGP.DataLayer.Repositories
 
             if (result > 0) return ServiceResult.Okay();
             return ServiceResult.Error();
+        }
+
+        public ServiceResult DoConfirmed(int id, string imageName)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+            entity.ImageName = imageName;
+            entity.State = Entities.AccountGameState.Confirmed;
+
+            _context.Update(entity);
+            var result = _context.SaveChanges();
+
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+        }
+
+        public bool IsCreateByUser(int userId, int accountGameId)
+        {
+            var isCreated = _context.
+                AccountGames.
+                Any(c => c.UserId == userId && c.Id == accountGameId);
+
+            return isCreated;
         }
     }
 }
