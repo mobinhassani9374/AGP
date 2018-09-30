@@ -165,7 +165,7 @@ namespace AGP.DataLayer.Repositories
                    RequestDate = c.RequestDate,
                    State = (int)c.State,
                    ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
-
+                   ImageName = c.ImageName
                })
                .FirstOrDefault();
 
@@ -174,11 +174,11 @@ namespace AGP.DataLayer.Repositories
 
         public int GetGameId(int id)
         {
-          var gameId=  _context.
-                AccountGames.
-                Where(c => c.Id.Equals(id)).
-                Select(c => c.GameId).
-                FirstOrDefault();
+            var gameId = _context.
+                  AccountGames.
+                  Where(c => c.Id.Equals(id)).
+                  Select(c => c.GameId).
+                  FirstOrDefault();
 
             return gameId;
         }
@@ -207,6 +207,15 @@ namespace AGP.DataLayer.Repositories
 
             if (result > 0) return ServiceResult.Okay();
             return ServiceResult.Error();
+        }
+
+        public bool IsCreateByUser(int userId, int accountGameId)
+        {
+            var isCreated = _context.
+                AccountGames.
+                Any(c => c.UserId == userId && c.Id == accountGameId);
+
+            return isCreated;
         }
     }
 }
