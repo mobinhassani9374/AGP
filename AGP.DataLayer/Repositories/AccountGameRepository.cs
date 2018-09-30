@@ -171,5 +171,18 @@ namespace AGP.DataLayer.Repositories
 
             return model;
         }
+
+        public ServiceResult DoCancel(int id, string reason)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+            entity.ReasonForCancel = reason;
+            entity.State = Entities.AccountGameState.Cancel;
+
+            _context.Update(entity);
+            var result = _context.SaveChanges();
+
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
+        }
     }
 }

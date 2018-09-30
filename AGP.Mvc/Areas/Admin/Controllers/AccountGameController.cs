@@ -50,5 +50,26 @@ namespace AGP.Mvc.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Check), new { id = model.Id });
         }
+
+        public IActionResult CancelAccount(int id)
+        {
+            var exist = _accountGameRepository.ExistById(id);
+
+            if (!exist) return RedirectToAction(nameof(Waiting));
+
+            if (!_accountGameRepository.AccountStateIsWaiting(id))
+                return RedirectToAction(nameof(Waiting));
+
+            ViewBag.AccountGameId = id;
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CancelAccount(int accountGameId, string reason)
+        {
+            var result = _accountGameRepository.DoCancel(accountGameId, reason);
+            TempData.AddResult(result);
+            return RedirectToAction(nameof(Waiting));
+        }
     }
 }

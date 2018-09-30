@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CancelAccount</title>
+</head>
+<body>
+    <form asp-action="CancelAccount" asp-controller="AccountGame" method="post">
+        <p>دلیل رد اکانت : <textarea name="reason" required></textarea></p>
+        <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)"/>
+        <input type="submit" value="رد"/>
+    </form>
+</body>
+</html>
