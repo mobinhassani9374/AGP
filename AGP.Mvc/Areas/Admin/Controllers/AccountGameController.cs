@@ -72,7 +72,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         {
             var result = _accountGameRepository.DoCancel(accountGameId, reason);
             TempData.AddResult(result);
-            return RedirectToAction(nameof(Waiting));
+            return Helper.FancyBox.CloseAndRedirect(Url.Action(nameof(Waiting)));
         }
 
         public IActionResult ConfirmedAccount(int id)
