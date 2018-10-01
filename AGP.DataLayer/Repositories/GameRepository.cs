@@ -140,7 +140,6 @@ namespace AGP.DataLayer.Repositories
             });
             _context.SaveChanges();
         }
-
         public ServiceResult Update(int id, string name, string displayName)
         {
             var entity = _context.Games.FirstOrDefault(c => c.Id == id);
