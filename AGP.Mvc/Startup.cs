@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using AGP.DataLayer.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AGP.Mvc.Middleware;
+using AutoMapper;
 
 namespace AGP.Mvc
 {
@@ -38,7 +39,7 @@ namespace AGP.Mvc
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-
+            services.AddAutoMapper();
             services.AddMvc();
 
             // configuration file Injection
