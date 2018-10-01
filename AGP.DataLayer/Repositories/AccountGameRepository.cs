@@ -6,6 +6,7 @@ using AGP.Domain.ViewModel.Game;
 using AGP.Domain.ViewModel.AccountGame;
 using Microsoft.EntityFrameworkCore;
 using AGP.Utility;
+using AGP.DataLayer.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -216,6 +217,51 @@ namespace AGP.DataLayer.Repositories
                 Any(c => c.UserId == userId && c.Id == accountGameId);
 
             return isCreated;
+        }
+
+        public bool PermisionForDelete(int id)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id.Equals(id));
+
+            var isPermision = true;
+
+            switch (entity.State)
+            {
+                case Entities.AccountGameState.Waiting:
+                    {
+                        isPermision = false;
+                        break;
+                    }
+
+                case Entities.AccountGameState.Confirmed:
+                    {
+                        if (entity.BuyState == AccountGameBuyState.Buied && entity.BuyState == AccountGameBuyState.ExistRequest)
+                        {
+                            isPermision = false;
+                        }
+                        else
+                        {
+                            isPermision = true;
+                        }
+                        break;
+                    }
+                case Entities.AccountGameState.Cancel:
+                    {
+                        isPermision = true;
+                        break;
+                    }
+            }
+
+            return isPermision;
+        }
+
+        public ServiceResult Delete(int id)
+        {
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id.Equals(id));
+            _context.Remove(entity);
+            var result = _context.SaveChanges();
+            if (result > 0) return ServiceResult.Okay();
+            return ServiceResult.Error();
         }
     }
 }

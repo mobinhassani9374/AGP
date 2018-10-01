@@ -101,5 +101,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
             TempData.AddResult(result);
             return RedirectToAction(nameof(Waiting));
         }
+
+        
     }
 }

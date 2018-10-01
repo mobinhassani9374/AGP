@@ -84,12 +84,40 @@ namespace AGP.Mvc.Controllers
             // آیا اکانت توسط کاربر ایجاد شده است
             var isCreateByUser = _accountGameRepository.IsCreateByUser(userId, id);
 
-            if(!isCreateByUser)
+            if (!isCreateByUser)
                 return RedirectToAction(nameof(AccountList));
 
             var model = _accountGameRepository.GetById(id);
 
             return View(model);
+        }
+
+        public IActionResult AccountDelete(int id)
+        {
+            var userId = User.GetUserId();
+
+            // ایا اکانت موجود می باشد
+            var exist = _accountGameRepository.ExistById(id);
+
+            if (!exist) return RedirectToAction(nameof(AccountList));
+
+            // آیا اکانت توسط کاربر ایجاد شده است
+            var isCreateByUser = _accountGameRepository.IsCreateByUser(userId, id);
+
+            if (!isCreateByUser)
+                return RedirectToAction(nameof(AccountList));
+
+            // آیا اجازه حذف دارد?
+            var isPermision = _accountGameRepository.PermisionForDelete(id);
+            if (!isPermision)
+                return RedirectToAction(nameof(AccountList));
+
+            var result = _accountGameRepository.Delete(id);
+
+            TempData.AddResult(result);
+
+            return RedirectToAction(nameof(AccountList));
+
         }
         #endregion
     }
