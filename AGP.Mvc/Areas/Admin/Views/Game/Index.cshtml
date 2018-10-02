@@ -54,7 +54,7 @@
                                 <td class="fa-iransansdn">@item.Images.Count</td>
                                 <td>
                                     <a data-toggle="tooltip" title="ویرایش"  asp-action="Edit" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)"><i class="pe-7s-edit size-20"></i></a>
-                                    <a data-toggle="tooltip" class="delete" asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" title="حذف" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
+                                    <a data-toggle="tooltip" title="حذف بازی" class="delete" asp-action="Delete" asp-controller="Game" asp-area="Admin" asp-route-id="@(item.Id)" data-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
                                 </td>
                             </tr>
                         }
@@ -64,33 +64,3 @@
         </form>
     </div>
 </div>
-
-<script>
-    $('.delete').on('click', function (e) {
-        e.preventDefault();
-        console.log($(this).attr('href'));
-        sweet($(this).attr('href'));
-    })
-
-    //sweet
-    function sweet(url) {
-        swal({
-            title: "حذف بازی ",
-            text: "آیا مطمئن هستید ؟؟",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonClass: 'btn-danger',
-            confirmButtonText: 'بله',
-            cancelButtonText: "خیر",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        },
-            function (isConfirm) {
-                if (isConfirm) {
-                    window.location.href = url;
-                } else {
-                    swal.close();
-                }
-            });
-    }
-</script>
