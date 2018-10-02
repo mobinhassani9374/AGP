@@ -323,5 +323,32 @@ h1.titr {
     background: white;
 }
 
+.sweet-alert {
+    width:400px !important;
+}
+
+@media (max-width:767px) {
+    .sweet-alert {
+        width: 95% !important;
+    }
+}
+
+.sa-button-container > .btn {
+    width:120px;
+}
+
+.sa-confirm-button-container > .btn {
+    width: 120px;
+}
+
+.sa-button-container {
+    direction:ltr;
+}
+
+.sweet-alert .btn-danger:focus {
+    box-shadow:none !important;
+    -webkit-box-shadow:none !important;
+}
+
 
 
