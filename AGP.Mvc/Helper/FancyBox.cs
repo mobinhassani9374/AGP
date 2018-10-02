@@ -10,10 +10,8 @@ namespace AGP.Mvc.Helper
     {
         public static ContentResult CloseAndRedirect(string url)
         {
-            var script = "<script>" +
-                "$.fancybox.close();" +
-                $"window.location='{url}';" +
-                "</script>";
+            var script = 
+                $"<script>window.parent.location.href = '{url}';parent.jQuery.fancybox.close(); </script>";
 
             return new ContentResult() { Content = script, ContentType = "text/html" };
         }

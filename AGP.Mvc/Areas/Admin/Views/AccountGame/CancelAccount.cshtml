@@ -26,9 +26,9 @@
     <link href="~/docs/lib/fancybox2.1.5/css/jquery.fancybox.css" rel="stylesheet" />
 
 </head>
-<body >
+<body>
 
-    <main >
+    <main>
 
         <div class="col-md-12" style="direction:rtl;text-align:right;">
             <div class="box form-material padding-10">
@@ -40,7 +40,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="example-email">دلیل رد اکانت </label>
-                            <textarea rows="5" required="" class="form-control"  id="reason" name="reason"></textarea>
+                            <textarea rows="5" required="" class="form-control" id="reason" name="reason"></textarea>
                         </div>
                     </div>
                     <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
@@ -49,17 +49,13 @@
 
                 </form>
             </div>
-            <button onclick="parent.$.fancybox.close();closeFancy();">owfj</button>
+            <button onclick="closeFancy();">owfj</button>
         </div>
     </main>
 
     <script>
-            function closeFancy() {
-                console.log('hi');
-                window.location = "/Admin";
-               
-                }
-               
+        
+
     </script>
 
 </body>

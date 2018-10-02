@@ -99,7 +99,7 @@ namespace AGP.Mvc.Areas.Admin.Controllers
         {
             var result = _accountGameRepository.DoConfirmed(accountGameId, imageName);
             TempData.AddResult(result);
-            return RedirectToAction(nameof(Waiting));
+            return Helper.FancyBox.CloseAndRedirect(Url.Action(nameof(Waiting)));
         }
 
         
