@@ -12,6 +12,10 @@ namespace AGP.Utility
         {
             return new ServiceResult() { Success = true, Message = "عملیات با موفقیت انجام شد" };
         }
+        public static ServiceResult Okay(string message)
+        {
+            return new ServiceResult() { Success = true, Message = message };
+        }
         public static ServiceResult Error()
         {
             return new ServiceResult() { Success=false, Message="در انجام عملیات خطایی صورت گرفت مجددا تلاش کنید" };

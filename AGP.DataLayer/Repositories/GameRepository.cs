@@ -31,7 +31,7 @@ namespace AGP.DataLayer.Repositories
             };
             _context.Add(entity);
             var result = _context.SaveChanges();
-            if (result > 0) return ServiceResult.Okay();
+            if (result > 0) return ServiceResult.Okay("یک بازی با موفقیت اضافه شد");
             return ServiceResult.Error();
 
         }
@@ -84,7 +84,7 @@ namespace AGP.DataLayer.Repositories
             var entity = _context.Games.Include(c => c.Images).FirstOrDefault(c => c.Id == id);
             _context.Remove(entity);
             var result = _context.SaveChanges();
-            if (result > 0) return ServiceResult.Okay();
+            if (result > 0) return ServiceResult.Okay("یک بازی با موفقیت حذف شد");
             return ServiceResult.Error();
         }
         public bool ExistById(int id)
@@ -148,7 +148,7 @@ namespace AGP.DataLayer.Repositories
             entity.DisplayName = displayName;
             _context.Update(entity);
             var result = _context.SaveChanges();
-            if (result > 0) return ServiceResult.Okay();
+            if (result > 0) return ServiceResult.Okay("یک بازی با موفقیت ویرایش شد");
             return ServiceResult.Error();
         }
     }
