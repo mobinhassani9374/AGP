@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGP.DataLayer", "AGP.DataLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGP.Utility", "AGP.Utility\AGP.Utility.csproj", "{BE0CEE72-410C-400F-B90C-292CA53BBE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGP.Domain", "AGP.Domain\AGP.Domain.csproj", "{A45B47D9-A11C-47C3-82CA-1C2803CD79A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGP.Domain", "AGP.Domain\AGP.Domain.csproj", "{A45B47D9-A11C-47C3-82CA-1C2803CD79A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGP.Infrastructure", "AGP.Infrastructure\AGP.Infrastructure.csproj", "{B6E429B5-E3A5-42CC-982F-3581871B49C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A45B47D9-A11C-47C3-82CA-1C2803CD79A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A45B47D9-A11C-47C3-82CA-1C2803CD79A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A45B47D9-A11C-47C3-82CA-1C2803CD79A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E429B5-E3A5-42CC-982F-3581871B49C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E429B5-E3A5-42CC-982F-3581871B49C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E429B5-E3A5-42CC-982F-3581871B49C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E429B5-E3A5-42CC-982F-3581871B49C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
