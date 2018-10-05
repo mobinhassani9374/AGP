@@ -270,6 +270,7 @@ namespace AGP.DataLayer.Repositories
             var model = _context
                 .AccountGames
                 .Where(c => c.State == AccountGameState.Confirmed)
+                .Where(c=>c.IsActive)
                 .ProjectTo<AccountGameViewModel>()
                 .OrderBy(c => c.Id)
                 .Skip((pageNumber - 1) * pageSize)
