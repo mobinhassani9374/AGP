@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AGP.DataLayer\AGP.DataLayer.csproj" />
     <ProjectReference Include="..\AGP.Domain\AGP.Domain.csproj" />
+    <ProjectReference Include="..\AGP.Infrastructure\AGP.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

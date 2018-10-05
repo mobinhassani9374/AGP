@@ -9,10 +9,28 @@ namespace AGP.Mvc.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public IActionResult Index()
+        private readonly AccountGameRepository _accountGameRepository;
+        public HomeController(AccountGameRepository accountGameRepository)
         {
-            return View();
+            _accountGameRepository = accountGameRepository;
+        }
+        public IActionResult Index(int page = 1)
+        {
+            var model = _accountGameRepository.GetAllConfirmed(page, 12);
+
+            var countAll = _accountGameRepository.CountConfirmed();
+
+            ViewBag.CurrentPage = page;
+
+            var totalPages = countAll / 12;
+            if (countAll % 12 != 0) totalPages++;
+
+            if (page <= 0 || page > totalPages)
+                ViewBag.CurrentPage = 1;
+
+            ViewBag.TotalPages = totalPages;
+
+            return View(model);
         }
 
         public IActionResult AboutUs()
@@ -20,7 +38,7 @@ namespace AGP.Mvc.Controllers
             return View();
         }
 
-        public IActionResult Help ()
+        public IActionResult Help()
         {
             return View();
         }

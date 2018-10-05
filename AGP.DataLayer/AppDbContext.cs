@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AGP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AGP.DataLayer
@@ -8,11 +9,11 @@ namespace AGP.DataLayer
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
-        public DbSet<Entities.User> Users { get; set; }
-        public DbSet<Entities.LogService> LogServices { get; set; }
-        public DbSet<Entities.Game> Games { get; set; }
-        public DbSet<Entities.ImageGame> ImageGames { get; set; }
-        public DbSet<Entities.AccountGame> AccountGames { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<LogService> LogServices { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<ImageGame> ImageGames { get; set; }
+        public DbSet<AccountGame> AccountGames { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

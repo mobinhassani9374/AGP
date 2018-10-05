@@ -6,7 +6,8 @@ using AGP.Domain.ViewModel.Game;
 using AGP.Domain.ViewModel.AccountGame;
 using Microsoft.EntityFrameworkCore;
 using AGP.Utility;
-using AGP.DataLayer.Entities;
+using AutoMapper.QueryableExtensions;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -34,7 +35,7 @@ namespace AGP.DataLayer.Repositories
         }
         public Utility.ServiceResult Create(AccountGameCreateViewModel model)
         {
-            _context.AccountGames.Add(new Entities.AccountGame
+            _context.AccountGames.Add(new AccountGame
             {
                 CreateDate = DateTime.Now,
                 Description = model.Description,
@@ -42,8 +43,8 @@ namespace AGP.DataLayer.Repositories
                 IsActive = true,
                 Level = model.Level,
                 Price = model.Price,
-                State = Entities.AccountGameState.Waiting,
-                BuyState = Entities.AccountGameBuyState.WaitingForBuy,
+                State = AccountGameState.Waiting,
+                BuyState =AccountGameBuyState.WaitingForBuy,
                 UserId = model.UserId
             });
             var result = _context.SaveChanges();
@@ -60,7 +61,7 @@ namespace AGP.DataLayer.Repositories
                   Select(c => new AccountGameViewModel
                   {
                       BuyDate = c.BuyDate,
-                      BuyState = (int)c.BuyState,
+                      BuyState = c.BuyState,
                       CreateDate = c.CreateDate,
                       Description = c.Description,
                       Id = c.Id,
@@ -71,7 +72,7 @@ namespace AGP.DataLayer.Repositories
                       IsDeActiveByAdmin = c.IsDeActiveByAdmin,
                       ReasonForCancel = c.ReasonForCancel,
                       ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
-                      State = (int)c.State,
+                      State = c.State,
                       RequestDate = c.RequestDate,
                       GameDisplayName = c.Game.DisplayName,
                       GameId = c.GameId,
@@ -88,7 +89,7 @@ namespace AGP.DataLayer.Repositories
                 .AccountGames
                 .Include(c => c.User)
                 .Include(c => c.Game)
-                .Where(c => c.State == Entities.AccountGameState.Waiting)
+                .Where(c => c.State == AccountGameState.Waiting)
                 .Select(c => new AccountGameViewModel
                 {
                     Id = c.Id,
@@ -119,7 +120,7 @@ namespace AGP.DataLayer.Repositories
 
         public bool AccountStateIsWaiting(int id)
         {
-            return _context.AccountGames.Any(c => c.Id.Equals(id) && c.State == Entities.AccountGameState.Waiting);
+            return _context.AccountGames.Any(c => c.Id.Equals(id) && c.State == AccountGameState.Waiting);
         }
 
         public Utility.ServiceResult Update(AccountGameEditViewModel model)
@@ -144,7 +145,7 @@ namespace AGP.DataLayer.Repositories
                .AccountGames
                .Include(c => c.User)
                .Include(c => c.Game)
-               .Where(c => c.State == Entities.AccountGameState.Waiting)
+               .Where(c => c.State == AccountGameState.Waiting)
                .Select(c => new AccountGameViewModel
                {
                    Id = c.Id,
@@ -159,12 +160,12 @@ namespace AGP.DataLayer.Repositories
                    UserId = c.UserId,
                    UserFullName = c.User.FullName,
                    BuyDate = c.BuyDate,
-                   BuyState = (int)c.BuyState,
+                   BuyState = c.BuyState,
                    IsDeActiveByAdmin = c.IsDeActiveByAdmin,
                    IsDone = c.IsDone,
                    ReasonForCancel = c.ReasonForCancel,
                    RequestDate = c.RequestDate,
-                   State = (int)c.State,
+                   State = c.State,
                    ReasonForDeActiveByAdmin = c.ReasonForDeActiveByAdmin,
                    ImageName = c.ImageName
                })
@@ -188,7 +189,7 @@ namespace AGP.DataLayer.Repositories
         {
             var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
             entity.ReasonForCancel = reason;
-            entity.State = Entities.AccountGameState.Cancel;
+            entity.State = AccountGameState.Cancel;
 
             _context.Update(entity);
             var result = _context.SaveChanges();
@@ -201,7 +202,7 @@ namespace AGP.DataLayer.Repositories
         {
             var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
             entity.ImageName = imageName;
-            entity.State = Entities.AccountGameState.Confirmed;
+            entity.State = AccountGameState.Confirmed;
 
             _context.Update(entity);
             var result = _context.SaveChanges();
@@ -227,13 +228,13 @@ namespace AGP.DataLayer.Repositories
 
             switch (entity.State)
             {
-                case Entities.AccountGameState.Waiting:
+                case AccountGameState.Waiting:
                     {
                         isPermision = false;
                         break;
                     }
 
-                case Entities.AccountGameState.Confirmed:
+                case AccountGameState.Confirmed:
                     {
                         if (entity.BuyState == AccountGameBuyState.Buied && entity.BuyState == AccountGameBuyState.ExistRequest)
                         {
@@ -245,7 +246,7 @@ namespace AGP.DataLayer.Repositories
                         }
                         break;
                     }
-                case Entities.AccountGameState.Cancel:
+                case AccountGameState.Cancel:
                     {
                         isPermision = true;
                         break;
@@ -262,6 +263,29 @@ namespace AGP.DataLayer.Repositories
             var result = _context.SaveChanges();
             if (result > 0) return ServiceResult.Okay();
             return ServiceResult.Error();
+        }
+
+        public List<AccountGameViewModel> GetAllConfirmed(int pageNumber, int pageSize = 12)
+        {
+            var model = _context
+                .AccountGames
+                .Where(c => c.State == AccountGameState.Confirmed)
+                .ProjectTo<AccountGameViewModel>()
+                .OrderBy(c => c.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return model;
+        }
+
+        public int CountConfirmed()
+        {
+            var count = _context.AccountGames.Where(c => c.State ==
+               AccountGameState.Confirmed)
+               .Count();
+
+            return count;
         }
     }
 }

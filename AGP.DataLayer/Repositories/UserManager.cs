@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using AGP.Domain.ViewModel.Account;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -19,7 +20,7 @@ namespace AGP.DataLayer.Repositories
         {
             var result = new RegisterResultViewModel();
             var serialNumber = SerialNumberGenerator.Generate();
-            var user = _context.Users.Add(new Entities.User
+            var user = _context.Users.Add(new User
             {
                 CreateDate = DateTime.Now,
                 Email = userName,
@@ -48,7 +49,7 @@ namespace AGP.DataLayer.Repositories
             return _context.Users.Any(c => c.UserName == userName);
         }
 
-        public Entities.User Find(string email,string password)
+        public User Find(string email,string password)
         {
             var passwordHash = PasswordHasher.Hash(password);
 

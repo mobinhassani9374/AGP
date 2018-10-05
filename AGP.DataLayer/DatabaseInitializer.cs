@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer
 {
@@ -17,7 +18,7 @@ namespace AGP.DataLayer
         {
             if(!_context.Users.Any())
             {
-                var user1 = new Entities.User
+                var user1 = new User
                 {
                     CreateDate = DateTime.Now,
                     Email = "mobinhassani9374@gmail.com",
@@ -28,7 +29,7 @@ namespace AGP.DataLayer
                     SerialNumber = SerialNumberGenerator.Generate(),
                     Password = PasswordHasher.Hash("2397423974"),
                 };
-                var user2 = new Entities.User
+                var user2 = new User
                 {
                     CreateDate = DateTime.Now,
                     Email = "mahdihassani9374@gmail.com",

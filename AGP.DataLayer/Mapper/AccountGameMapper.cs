@@ -1,4 +1,4 @@
-﻿using AGP.DataLayer.Entities;
+﻿using AGP.DataLayer.Migrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,9 +7,9 @@ using System.Text;
 
 namespace AGP.DataLayer.Mapper
 {
-    public class AccountGameMapper : IEntityTypeConfiguration<Entities.AccountGame>
+    public class AccountGameMapper : IEntityTypeConfiguration<Domain.Entities.AccountGame>
     {
-        public void Configure(EntityTypeBuilder<AccountGame> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.AccountGame> builder)
         {
             builder.HasKey(c=>c.Id);
 

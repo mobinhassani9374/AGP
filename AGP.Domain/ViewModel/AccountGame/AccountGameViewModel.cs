@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using AGP.Domain.Entities;
 
 namespace AGP.Domain.ViewModel.AccountGame
 {
@@ -14,7 +15,7 @@ namespace AGP.Domain.ViewModel.AccountGame
         public decimal Price { get; set; }
         public DateTime CreateDate { get; set; }
         public bool IsActive { get; set; }
-        public int State { get; set; }
+        public AccountGameState State { get; set; }
         /// <summary>
         /// دلیل رد اکانت
         /// </summary>
@@ -25,7 +26,7 @@ namespace AGP.Domain.ViewModel.AccountGame
         public DateTime? RequestDate { get; set; }
         public DateTime? BuyDate { get; set; }
         public bool IsDone { get; set; }
-        public int BuyState { get; set; }
+        public AccountGameBuyState BuyState { get; set; }
         public bool IsDeActiveByAdmin { get; set; }
         public string ReasonForDeActiveByAdmin { get; set; }
 

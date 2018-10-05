@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -16,7 +17,7 @@ namespace AGP.DataLayer.Repositories
         }
         public void Log(LogServiceViewModel model)
         {
-            var entity = new Entities.LogService
+            var entity = new LogService
             {
                 Method = model.Method,
                 QueryString = model.QueryString,

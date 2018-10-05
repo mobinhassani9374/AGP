@@ -12,6 +12,7 @@ using AGP.DataLayer.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AGP.Mvc.Middleware;
 using AutoMapper;
+using AGP.Infrastructure.Mapping;
 
 namespace AGP.Mvc
 {
@@ -40,6 +41,12 @@ namespace AGP.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<AccountGameProfile>();
+            });
+
             services.AddMvc();
 
             // configuration file Injection

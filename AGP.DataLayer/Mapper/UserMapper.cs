@@ -1,4 +1,4 @@
-﻿using AGP.DataLayer.Entities;
+﻿using AGP.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AGP.DataLayer.Mapper
 {
-    public class UserMapper : IEntityTypeConfiguration<Entities.User>
+    public class UserMapper : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

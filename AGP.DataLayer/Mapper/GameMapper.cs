@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AGP.DataLayer.Entities;
+using AGP.DataLayer.Migrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AGP.DataLayer.Mapper
 {
-    public class GameMapper : IEntityTypeConfiguration<Entities.Game>
+    public class GameMapper : IEntityTypeConfiguration<Domain.Entities.Game>
     {
-        public void Configure(EntityTypeBuilder<Game> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.Game> builder)
         {
             builder.HasKey(c => c.Id);
             // relation

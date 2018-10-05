@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AGP.DataLayer.Entities
+namespace AGP.Domain.Entities
 {
     public class LogService
     {

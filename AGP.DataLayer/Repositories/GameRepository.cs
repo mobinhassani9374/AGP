@@ -6,6 +6,7 @@ using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -18,12 +19,12 @@ namespace AGP.DataLayer.Repositories
         }
         public ServiceResult Create(GameViewModel model)
         {
-            var entity = new Entities.Game
+            var entity = new Game
             {
                 CreatDate = model.CreatDate,
                 DisplayName = model.DisplayName,
                 Name = model.Name,
-                Images = model.Images.Select(c => new Entities.ImageGame
+                Images = model.Images.Select(c => new ImageGame
                 {
                     ImageName = c.ImageName
                 }).ToList()
@@ -132,7 +133,7 @@ namespace AGP.DataLayer.Repositories
         {
             imageNames.ForEach(c =>
             {
-                _context.ImageGames.Add(new Entities.ImageGame
+                _context.ImageGames.Add(new ImageGame
                 {
                     GameId = id,
                     ImageName = c

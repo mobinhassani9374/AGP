@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace AGP.DataLayer.Entities
+namespace AGP.Domain.Entities
 {
     public class AccountGame
     {

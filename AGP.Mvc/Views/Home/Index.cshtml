@@ -1,9 +1,23 @@
-﻿
+﻿@using AGP.Domain.ViewModel.AccountGame
+@model List<AccountGameViewModel>
 @{
     ViewData["Title"] = "اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
+
 }
+@foreach (var item in Model)
+{
+    <div>
+        <p>نام بازی : @item.GameDisplayName</p>
+        <p>عکس : <img src="~/Attachment/@item.ImageName" style="width:50px;height:50px;"/></p>
+        <p>قیمت : @item.Price.ToString("#,##")</p>
+        <p>سطح : @item.Level</p>
+        <p><a href="/mobin">درخواست خرید</a></p>
+        <p>نام کاربر : <a href="/frwo">@item.UserFullName</a></p>
+    </div>
+
+}
+
 
 @*<h2>Index Pages</h2>*@
 @*@if(User.Identity.IsAuthenticated)
@@ -63,29 +77,29 @@
 </div>
 
 @*<div class="col-md-3 col-sm-5 col-xs-12 pull-left">
-    <div class="box">
-        <div class="profile">
-            <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
-            <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
-            <h4 class="profile__name">مهدی حسنی </h4>
-            <ul class="profile__menu">
-                <li class="profile__menu__item">
-                    <a class="active" href="/add-account.html" target="_blank">اضافه نمودن اکانت جدید </a>
-                </li>
-                <li class="profile__menu__item">
-                    <a href="/list-account.html" target="_blank">لیست اکانت های من </a>
-                </li>
+        <div class="box">
+            <div class="profile">
+                <img src="~/docs/images/profile-bg.jpg" class="profile__img img-responsive" />
+                <img src="~/docs/images/user.jpg" class="profile__user img-responsive" />
+                <h4 class="profile__name">مهدی حسنی </h4>
+                <ul class="profile__menu">
+                    <li class="profile__menu__item">
+                        <a class="active" href="/add-account.html" target="_blank">اضافه نمودن اکانت جدید </a>
+                    </li>
+                    <li class="profile__menu__item">
+                        <a href="/list-account.html" target="_blank">لیست اکانت های من </a>
+                    </li>
 
-                <li class="profile__menu__item">
-                    <a href="#">لیست اکانت های من </a>
-                </li>
-                <li class="profile__menu__item">
-                    <a href="#">لیست اکانت های من </a>
-                </li>
-            </ul>
+                    <li class="profile__menu__item">
+                        <a href="#">لیست اکانت های من </a>
+                    </li>
+                    <li class="profile__menu__item">
+                        <a href="#">لیست اکانت های من </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <div class="col-md-12 col-sm-12 col-sx-12 padding-0">
     <div class="col-md-3 col-sm-6 col-xs-12">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using AGP.Domain.Entities;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -16,7 +17,7 @@ namespace AGP.DataLayer.Repositories
         {
             var count = _context
                  .AccountGames
-                 .Where(c => c.State == Entities.AccountGameState.Waiting)
+                 .Where(c => c.State == AccountGameState.Waiting)
                  .Count();
 
             return count;
