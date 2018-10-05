@@ -9,14 +9,34 @@
 {
     <div>
         <p>نام بازی : @item.GameDisplayName</p>
-        <p>عکس : <img src="~/Attachment/@item.ImageName" style="width:50px;height:50px;"/></p>
+        <p>عکس : <img src="~/Attachment/@item.ImageName" style="width:50px;height:50px;" /></p>
         <p>قیمت : @item.Price.ToString("#,##")</p>
         <p>سطح : @item.Level</p>
         <p><a href="/mobin">درخواست خرید</a></p>
         <p>نام کاربر : <a href="/frwo">@item.UserFullName</a></p>
-    </div>
+        <p>وضعیت خرید : </p>
+        <p>
+            @if (item.BuyState == AGP.Domain.Entities.AccountGameBuyState.Buied)
+            {
+            <p>به فروش رسید</p>
+            <p>دکمه غیرفعال</p>
+        }
+        else if (item.BuyState == AGP.Domain.Entities.AccountGameBuyState.ExistRequest)
+        {
+            <p>درخواست خرید وجود دارد</p>
+            <p>دکمه غیر فعال</p>
 
-}
+        }
+        else
+        {
+            <p>هنوز به فروش نرسیده است</p>
+            <p>دکمه فعال</p>
+        }
+
+
+        </div>
+
+    }
 
 
 @*<h2>Index Pages</h2>*@
