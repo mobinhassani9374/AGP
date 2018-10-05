@@ -41,12 +41,9 @@ namespace AGP.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper();
-
-            Mapper.Initialize(cfg =>
-            {
-                cfg.AddProfile<AccountGameProfile>();
-            });
-
+            // init auto Mapper
+            Initialize.Init();
+            // end init auto Mapper
             services.AddMvc();
 
             // configuration file Injection
