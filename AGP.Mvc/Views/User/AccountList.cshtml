@@ -99,10 +99,10 @@
                                 <td>
                                     @if (item.State == 3 || (item.State == 2 && (item.BuyState == 1 || item.BuyState == 3)))
                                     {
-                                        <a data-toggle="tooltip" class="delete" title="حذف" asp-action="AccountDelete" asp-route-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
+                                        <a data-toggle="tooltip"  class="delete" title="حذف اکانت" asp-action="AccountDelete" asp-route-id="@(item.Id)"><i class="pe-7s-trash size-20"></i></a>
                                     }
 
-                                    <a data-toggle="tooltip" asp-action="AccountDetail" asp-route-id="@(item.Id)" data-width="980" data-height="500" title="مشاهده جزئیات" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
+                                    <a data-toggle="tooltip" asp-action="AccountDetail" asp-route-id="@(item.Id)" data-width="600" data-height="500" title="مشاهده جزئیات" class="fancybox fancybox.iframe"><i class="pe-7s-info size-20"></i></a>
                                 </td>
                             </tr>
 

@@ -10,100 +10,126 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AccountDetail</title>
+    <title>جزئیات اکانت </title>
+
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- if RTL website code below delete comment and added dir="rtl" to html tag -->
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.rtl.css">
+    <link href="~/docs/fonts/font-fa.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/docs/css/styles.css" />
+    <link rel="stylesheet" href="~/docs/css/override.css?v=0.0.9" />
+
+    <script src="~/docs/lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="~/docs/lib/bootstrap/bootstrap.min.js"></script>
+
+    @*fancy*@
+
+    <script src="~/docs/lib/fancybox2.1.5/js/jquery.fancybox.pack.js"></script>
+    <link href="~/docs/lib/fancybox2.1.5/css/jquery.fancybox.css" rel="stylesheet" />
 </head>
 <body>
-    <table>
-        <tr>
-            <td>نام بازی</td>
-            <td>@Model.GameDisplayName</td>
-        </tr>
-        <tr>
-            <td>قیمت(تومان)</td>
-            <td>@Model.Price.ToString("#,##")</td>
-        </tr>
-        <tr>
-            <td>سطح</td>
-            <td>@Model.Level</td>
-        </tr>
-        <tr>
-            <td>توضیحات</td>
-            <td>@Model.Description</td>
-        </tr>
-        <tr>
-            <td>تاریخ ایجاد</td>
-            <td>@Model.CreateDate.ToShortTime()</td>
-        </tr>
-        <tr>
-            <td>وضعیت اکانت</td>
-            <td>
-                @if (Model.State == 1)
-                {
-                    <span>درحال بررسی</span>
-                }
-                else if (Model.State == 2)
-                {
-                    <span>تایید شده</span>
-                }
-                else
-                {
-                    <span>رد شده</span>
-                }
-            </td>
-        </tr>
-        @if (Model.State == 3)
-        {
-            <tr>
-                <td>دلیل رد اکانت</td>
-                <td>@Model.ReasonForCancel</td>
-            </tr>
 
-        }
-        <tr>
-            <td>فعال یا غیر فعال</td>
-            <td>
-                @if (Model.IsActive)
-                {
-                    <span>فعال</span>
+    <main>
 
-                }
-                else
-                {
-                    <span>غبرفعال</span>
+        <div class="col-md-12" style="direction:rtl;text-align:right;">
+            <div class="box form-material padding-10">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>نام بازی</td>
+                            <td>@Model.GameDisplayName</td>
+                        </tr>
+                        <tr>
+                            <td>قیمت(تومان)</td>
+                            <td class="fa-iransansdn">@Model.Price.ToString("#,##")</td>
+                        </tr>
+                        <tr>
+                            <td>سطح</td>
+                            <td>@Model.Level</td>
+                        </tr>
+                        <tr>
+                            <td>توضیحات</td>
+                            <td>@Model.Description</td>
+                        </tr>
+                        <tr>
+                            <td>تاریخ ایجاد</td>
+                            <td class="fa-iransansdn">@Model.CreateDate.ToShortTime()</td>
+                        </tr>
+                        <tr>
+                            <td>وضعیت اکانت</td>
+                            <td>
+                                @if (Model.State == 1)
+                                {
+                                    <span>درحال بررسی</span>
+                                }
+                                else if (Model.State == 2)
+                                {
+                                    <span>تایید شده</span>
+                                }
+                                else
+                                {
+                                    <span>رد شده</span>
+                                }
+                            </td>
+                        </tr>
+                        @if (Model.State == 3)
+                        {
+                            <tr>
+                                <td>دلیل رد اکانت</td>
+                                <td>@Model.ReasonForCancel</td>
+                            </tr>
 
-                }
-            </td>
-        </tr>
-        @if (Model.IsDeActiveByAdmin && !Model.IsActive)
-        {
-            <tr>
-                <td>دلیل غیرفعال شدن اکانت توسط مدیرسایت</td>
-                <td>@Model.ReasonForDeActiveByAdmin</td>
-            </tr>
-        }
-        <tr>
-            <td>تاریخ درخواست خرید</td>
-            <td>
-                @if (Model.RequestDate.HasValue)
-                {
-                    <span>@Model.RequestDate.Value.ToShortTime()</span>
+                        }
+                        <tr>
+                            <td>فعال یا غیر فعال</td>
+                            <td>
+                                @if (Model.IsActive)
+                                {
+                                    <span>فعال</span>
 
-                }
-                else
-                {
-                    <span>---</span>
+                                }
+                                else
+                                {
+                                    <span>غبرفعال</span>
 
-                }
-            </td>
-        </tr>
-        @if (Model.IsDone)
-        {
-            <tr>
-                <td>تاریخ فروش اکانت</td>
-                <td>@Model.BuyDate.Value.ToShortTime()</td>
-            </tr>
-        }
+                                }
+                            </td>
+                        </tr>
+                        @if (Model.IsDeActiveByAdmin && !Model.IsActive)
+                        {
+                            <tr>
+                                <td>دلیل غیرفعال شدن اکانت توسط مدیرسایت</td>
+                                <td>@Model.ReasonForDeActiveByAdmin</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>تاریخ درخواست خرید</td>
+                            <td>
+                                @if (Model.RequestDate.HasValue)
+                                {
+                                    <span>@Model.RequestDate.Value.ToShortTime()</span>
 
-    </table>
+                                }
+                                else
+                                {
+                                    <span>---</span>
+
+                                }
+                            </td>
+                        </tr>
+                        @if (Model.IsDone)
+                        {
+                            <tr>
+                                <td>تاریخ فروش اکانت</td>
+                                <td>@Model.BuyDate.Value.ToShortTime()</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
 </body>
 </html>

@@ -10,17 +10,74 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ConfirmedAccount</title>
+
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- if RTL website code below delete comment and added dir="rtl" to html tag -->
+    <link rel="stylesheet" href="~/docs/lib/bootstrap/dist/css/bootstrap.min.rtl.css">
+    <link href="~/docs/fonts/font-fa.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/docs/css/styles.css" />
+    <link rel="stylesheet" href="~/docs/css/override.css?v=0.0.11" />
+
+    <script src="~/docs/lib/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="~/docs/lib/bootstrap/bootstrap.min.js"></script>
+
+    <script src="~/docs/lib/fancybox2.1.5/js/jquery.fancybox.pack.js"></script>
+    <link href="~/docs/lib/fancybox2.1.5/css/jquery.fancybox.css" rel="stylesheet" />
+
+
 </head>
 <body>
-    <form asp-action="ConfirmedAccount" asp-controller="AccountGame" method="post">
-        <p>انتخاب عکس</p>
-        @foreach(var imageName in images)
-        {
-            <p><img src="~/Attachment/@imageName" style="width:60px;height:60px;"/><input type="radio" name="imageName" value="@imageName"/></p>
-            <p>تعداد دفعات استفاده : 2</p>
-        }
-        <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
-        <input type="submit" value="تایید" />
-    </form>
+
+
+    <main>
+
+        <div class="col-md-12" style="direction:rtl;text-align:right;">
+            <div class="box form-material padding-10">
+                <form asp-action="ConfirmedAccount" asp-controller="AccountGame" method="post">
+                    <div class="title"> تایید نمودن اکانت </div>
+                    <div class="description">
+                        از این قسمت باید برای اکانت تایید شده یک عکس انتخاب کنید
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>عکس</th>
+                                    <th>تعداد دفعات استفاده</th>
+                                    <th>انتخاب</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var imageName in images)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="~/Attachment/@imageName" class="img-thumbnail" style="width:50px;height:50px;" />
+                                        </td>
+                                        <td class="fa-iransansdn" style="vertical-align:middle">
+                                            21
+                                        </td>
+                                        <td style="vertical-align:middle">
+                                            <label class="form-radio">
+                                                <input type="radio" required name="imageName" value="@imageName" />
+                                                <span class="form-radio__checkmark"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                  
+                    <input type="hidden" name="accountGameId" value="@(ViewBag.AccountGameId)" />
+                    <input type="submit" value="تایید" class="btn btn-success width-100"  />
+
+
+                </form>
+            </div>
+        </div>
+    </main>
+    
 </body>
 </html>

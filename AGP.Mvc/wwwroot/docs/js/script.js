@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
   $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();  
@@ -53,6 +53,35 @@ $(function () {
               grid.isotope('layout');
           }, 0);
       })
+
+
+      $('.delete').on('click', function (e) {
+          e.preventDefault();
+          console.log($(this).attr('href'));
+          sweet($(this).attr('href'), $(this).attr('data-original-title'));
+      })
+
+      //sweet
+      function sweet(url,text) {
+          swal({
+              title: text,
+              text: "آیا مطمئن هستید ؟؟",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonClass: 'btn-danger',
+              confirmButtonText: 'بله',
+              cancelButtonText: "خیر",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          },
+              function (isConfirm) {
+                  if (isConfirm) {
+                      window.location.href = url;
+                  } else {
+                      swal.close();
+                  }
+              });
+      }
 
       /////////////////////////////////
 
