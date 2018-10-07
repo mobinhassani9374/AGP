@@ -350,5 +350,19 @@ h1.titr {
     -webkit-box-shadow:none !important;
 }
 
+main .product .product__img {
+    padding-top: 100%;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 0 !important;
+    transition:all 0.7s;
+}
+
+    main .product .product__img:hover {
+        -webkit-filter: grayscale(20%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(20%);
+    }
+
 
 
