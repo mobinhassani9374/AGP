@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "ویرایش نمودن بازی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var imagesByCount = (List<ImageByCountUseViewModel>)ViewBag.ImagesByCountUse;
 }
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -80,7 +81,7 @@
                                     <td>
                                         <input type="checkbox" name="deleteImages" value="@(item.Id)"
                                     </td>
-                                    <td class="fa-iransansdn">12</td>
+                                    <td class="fa-iransansdn">@imagesByCount.Where(c=>c.ImageName==item.ImageName).Select(c=>c.Count).FirstOrDefault()</td>
                                 </tr>
                             }
                         }

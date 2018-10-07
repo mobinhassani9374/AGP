@@ -90,6 +90,8 @@ namespace AGP.Mvc.Areas.Admin.Controllers
 
             ViewBag.Images = _gameRepository.GetImageNames(gameId);
 
+            ViewBag.ImagesByCountUse = _gameRepository.GetImagesByCountUse();
+
 
             return View();
         }

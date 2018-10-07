@@ -151,5 +151,21 @@ namespace AGP.DataLayer.Repositories
             if (result > 0) return ServiceResult.Okay("یک بازی با موفقیت ویرایش شد");
             return ServiceResult.Error();
         }
+        public List<ImageByCountUseViewModel> GetImagesByCountUse()
+        {
+            var data = _context.
+                AccountGames.
+                Where(c => c.State == AccountGameState.Confirmed)
+                .GroupBy(c => c.ImageName).
+                Select(c => new ImageByCountUseViewModel
+                {
+                    Count = c.Count(),
+                    ImageName = c.Key
+                }).
+                ToList();
+
+            return data;
+
+        }
     }
 }

@@ -109,6 +109,8 @@ namespace AGP.Mvc.Areas.Admin.Controllers
             }
             ViewBag.GameIamgeMaxFileSize = Configuration.GetValue<long>("GameIamgeMaxFileSize", 60);
             var model = _gameRepository.GetById(id);
+
+            ViewBag.ImagesByCountUse = _gameRepository.GetImagesByCountUse();
             return View(model);
         }
         [HttpPost]
