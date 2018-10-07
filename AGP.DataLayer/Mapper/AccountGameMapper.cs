@@ -26,6 +26,9 @@ namespace AGP.DataLayer.Mapper
                 HasForeignKey(c => c.GameId).
                 OnDelete(DeleteBehavior
                 .Cascade);
+
+            builder.Property(c => c.RowVersion)
+                .IsConcurrencyToken();
         }
     }
 }

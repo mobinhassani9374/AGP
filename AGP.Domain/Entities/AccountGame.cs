@@ -35,6 +35,9 @@ namespace AGP.Domain.Entities
         public Game Game { get; set; }
         public int GameId { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
     }
     public enum AccountGameState
     {
