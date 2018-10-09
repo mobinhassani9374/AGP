@@ -19,6 +19,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 
@@ -26,6 +27,8 @@
     <ProjectReference Include="..\AGP.DataLayer\AGP.DataLayer.csproj" />
     <ProjectReference Include="..\AGP.Domain\AGP.Domain.csproj" />
     <ProjectReference Include="..\AGP.Infrastructure\AGP.Infrastructure.csproj" />
+    <ProjectReference Include="..\AGP.Payment\AGP.Payment.csproj" />
+    <ProjectReference Include="..\AGP.Utility\AGP.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

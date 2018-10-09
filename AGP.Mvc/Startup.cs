@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using AGP.Mvc.Middleware;
 using AutoMapper;
 using AGP.Infrastructure.Mapping;
+using AGP.Domain.DTO;
 
 namespace AGP.Mvc
 {
@@ -41,6 +42,7 @@ namespace AGP.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper();
+            services.AddHttpClient();
             // init auto Mapper
             Initialize.Init();
             // end init auto Mapper
@@ -48,6 +50,8 @@ namespace AGP.Mvc
 
             // configuration file Injection
             services.AddSingleton<IConfigurationRoot>(config => { return Configuration; });
+            services.Configure<BitPayConfig>(options => Configuration.GetSection("BitPayConfig").Bind(options));
+
             // repository and Servcie Injection
             services.AddScoped<UserManager>();
             services.AddScoped<LogServiceRepository>();

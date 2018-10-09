@@ -4,15 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AGP.DataLayer.Repositories;
+using System.Net.Http;
+using Microsoft.Extensions.Options;
+using AGP.Domain.DTO;
 
 namespace AGP.Mvc.Controllers
 {
     public class HomeController : Controller
     {
         private readonly AccountGameRepository _accountGameRepository;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IOptions<BitPayConfig> _bitPayConfig;
         public HomeController(AccountGameRepository accountGameRepository)
         {
             _accountGameRepository = accountGameRepository;
+
         }
         public IActionResult Index(int page = 1)
         {
@@ -35,6 +41,7 @@ namespace AGP.Mvc.Controllers
 
         public IActionResult AboutUs()
         {
+
             return View();
         }
 
