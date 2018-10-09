@@ -12,23 +12,27 @@ namespace AGP.Mvc.Helper
         /// دکمه نهایی کردن خرید
         /// </summary>
         /// <returns></returns>
-        public static bool EnableBuyFinal(AccountGameState state,AccountGameBuyState buyState)
+        public static bool EnableBuyFinal(AccountGameState state,AccountGameBuyState buyState,bool isActive)
         {
-            if(state== AccountGameState.Confirmed)
+            if (isActive)
             {
-                if(buyState== AccountGameBuyState.Buied || buyState== AccountGameBuyState.ExistRequest)
+                if (state == AccountGameState.Confirmed)
                 {
-                    return false;
+                    if (buyState == AccountGameBuyState.Buied || buyState == AccountGameBuyState.ExistRequest)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
     }
 }

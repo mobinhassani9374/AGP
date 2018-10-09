@@ -12,17 +12,16 @@
 <p>توضیحات : @Model.Description</p>
 <p>سطح : @Model.Level</p>
 <p>
-    @if (ButtonAndLink.EnableBuyFinal(Model.State, Model.BuyState))
+    @if (ButtonAndLink.EnableBuyFinal(Model.State, Model.BuyState,Model.IsActive))
     {
         <button>نهایی کردن خرید</button>
-
     }
     else
     {
         <button disabled>نهایی کردن خرید</button>
     }
 </p>
-@if(Model.BuyState== AccountGameBuyState.Buied)
+@if(Model.IsDone)
 {
     <p>اکانت خریداری شده است</p>
     <p>توسط کی که باید لینک شود</p>
