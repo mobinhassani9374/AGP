@@ -5,5 +5,13 @@
   },
   "EnableLogService": true,
   "AuthenticationExpiresDay": 30,
-  "GameIamgeMaxFileSize": 6291456000
+  "GameIamgeMaxFileSize": 6291456000,
+  "BitPayConfig": {
+    "Api": "1b7dc-d2265-b5890-0854e-7afab405c244151ccd008db2c746",
+    "BaseAddress": "http://bitpay.ir/",
+    "RedirectUrl": "http://mobin.ir/mobin.cshtml",
+    "DisplayName": "اکانت پی",
+    "Email": "seratvector.ir",
+    "GatewayUrl": "payment/gateway-send"
+  }
 }
