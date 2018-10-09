@@ -13,8 +13,6 @@ namespace AGP.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly AccountGameRepository _accountGameRepository;
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IOptions<BitPayConfig> _bitPayConfig;
         public HomeController(AccountGameRepository accountGameRepository)
         {
             _accountGameRepository = accountGameRepository;
