@@ -14,25 +14,11 @@ namespace AGP.Mvc.Helper
         /// <returns></returns>
         public static bool EnableBuyFinal(AccountGameState state,AccountGameBuyState buyState,bool isActive)
         {
-            if (isActive)
-            {
-                if (state == AccountGameState.Confirmed)
-                {
-                    if (buyState == AccountGameBuyState.Buied || buyState == AccountGameBuyState.ExistRequest)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else return false;
+            if (isActive && state == AccountGameState.Confirmed && (buyState == AccountGameBuyState.WaitingForBuy || buyState == AccountGameBuyState.FailRequest))
+                return true;
+
+
+           return false;
         }
     }
 }

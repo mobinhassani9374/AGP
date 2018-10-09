@@ -1,6 +1,7 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
 @using AGP.Domain.Entities
 @using AGP.Mvc.Helper
+@using AGP.Mvc.Remark
 @model AccountGameViewModel
 @{
     ViewData["Title"] = "بررسی و خرید اکانت بازی";
@@ -24,6 +25,7 @@
 @if(Model.IsDone)
 {
     <p>اکانت خریداری شده است</p>
-    <p>توسط کی که باید لینک شود</p>
+    <p><a asp-action="Profile" asp-controller="User" asp-route-id="@Model.UserBuyerId"></a></p>
+    <p>نام خریدار : @RemarkUserId.Build(Model.UserBuyerId)</p>
 }
 

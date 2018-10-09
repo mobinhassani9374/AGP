@@ -36,6 +36,8 @@ namespace AGP.Domain.ViewModel.AccountGame
         public int UserId { get; set; }
         public string UserFullName { get; set; }
 
+        public int? UserBuyerId { get; set; }
+
         public string ImageName { get; set; }
     }
 }
