@@ -28,4 +28,9 @@
     <p><a asp-action="Profile" asp-controller="User" asp-route-id="@Model.UserBuyerId"></a></p>
     <p>نام خریدار : @RemarkUserId.Build(Model.UserBuyerId)</p>
 }
+@if(!Model.IsActive)
+{
+    <p style="color:red;">این اکانت بازی فعال نیست</p>
+
+}
 
