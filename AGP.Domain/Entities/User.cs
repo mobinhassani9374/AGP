@@ -19,5 +19,7 @@ namespace AGP.Domain.Entities
         public ICollection<LogService> LogServices { get; set; }
 
         public ICollection<AccountGame> AccountGames { get; set; }
+
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }
