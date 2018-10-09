@@ -1,4 +1,5 @@
 ﻿@using AGP.Domain.ViewModel.AccountGame
+@using AGP.Mvc.Helper
 @model List<AccountGameViewModel>
 @{
     ViewData["Title"] = "اکانت پی ";
@@ -69,9 +70,48 @@
                         <p class="clearfix">
                             <span>فروشنده : </span> <a href="#profile"> @item.UserFullName  / مشاهده پروفایل</a>
                         </p>
+                        <p>
+                            وضعیت : 
+                            @if(item.IsActive)
+                            {
+                                <span>فعال می باشد</span>
+
+                            }
+                            else
+                            {
+
+                                <span>غیر فعال می باشد</span>
+                            }
+                        </p>
+                        <p>
+                            وضعیت فروش : 
+                            @if(item.BuyState== AGP.Domain.Entities.AccountGameBuyState.Buied)
+                            {
+
+                                <span>به فروش رسیده است</span>
+                            }
+                            else if(item.BuyState== AGP.Domain.Entities.AccountGameBuyState.ExistRequest)
+                            {
+
+                                <span>خریدار دارد</span>
+                            }
+                            else
+                            {
+                                <span>هنوز به فروش نرسیده است</span>
+
+                            }
+                        </p>
                     </div>
                     <div class="text-center clearfix">
-                        <a asp-action="Detail" asp-controller="AccountGame" asp-route-id="@item.Id" class="product__btn btn"><span class="fa fa-shopping-cart"></span>درخواست خرید </a>
+                        @if (ButtonAndLink.EnableCheckAndBuy(item.BuyState))
+                        {
+                            <a asp-action="Detail" asp-controller="AccountGame" asp-route-id="@item.Id" class="product__btn btn"><span class="fa fa-shopping-cart"></span>بررسی و خرید اکانت</a>
+
+                        }
+                        else
+                        {
+                            <a asp-action="Detail" asp-controller="AccountGame" asp-route-id="@item.Id" class="product__btn btn"><span class="fa fa-shopping-cart"></span>مشاهده جزییات</a>
+                        }
                     </div>
                 </a>
             </div>

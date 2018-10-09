@@ -20,5 +20,13 @@ namespace AGP.Mvc.Helper
 
            return false;
         }
+
+        public static bool EnableCheckAndBuy(AccountGameBuyState buyState)
+        {
+            if (buyState == AccountGameBuyState.FailRequest || buyState == AccountGameBuyState.WaitingForBuy)
+                return true;
+
+            return false;
+        }
     }
 }
