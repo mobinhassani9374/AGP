@@ -25,6 +25,8 @@ namespace AGP.Mvc
                            .SetBasePath(env.ContentRootPath)
                            .AddJsonFile("appsetting.json");
             Configuration = builder.Build();
+
+            AppSettingProvider.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
         }
         public IConfigurationRoot Configuration { get; private set; }
         public void ConfigureServices(IServiceCollection services)
@@ -39,7 +41,7 @@ namespace AGP.Mvc
 
             services.AddDbContext<DataLayer.AppDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(AppSettingProvider.ConnectionString);
             });
             services.AddAutoMapper();
             services.AddHttpClient();
