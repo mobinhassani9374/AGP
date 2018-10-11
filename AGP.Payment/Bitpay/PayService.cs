@@ -39,5 +39,10 @@ namespace AGP.Payment.Bitpay
             else
                 return PayResult.Error();
         }
+
+        public PayResult Checkout()
+        {
+            return PayResult.Okay(12654);
+        }
     }
 }
