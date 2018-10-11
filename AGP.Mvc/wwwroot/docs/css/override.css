@@ -349,20 +349,44 @@ h1.titr {
     box-shadow:none !important;
     -webkit-box-shadow:none !important;
 }
-
-main .product .product__img {
-    padding-top: 100%;
+ .product__img {
+    padding-top: 55%;
     background-position: center;
     background-size: cover;
     width: 100%;
     height: 0 !important;
     transition:all 0.7s;
 }
-
-    main .product .product__img:hover {
+ .product__img:hover {
         -webkit-filter: grayscale(20%); /* Safari 6.0 - 9.0 */
         filter: grayscale(20%);
     }
+.color-theme {
+    color: #00897B !important;
+}
+
+.weight-600 {
+    font-weight:600;
+}
+
+.border-botoom {
+    border-bottom:1px solid #ccc;
+    padding-bottom:10px;
+}
+
+.margin-bottom-15 {
+    margin-bottom:15px;
+}
+
+.padding-20 {
+    padding:20px 10px !important;
+}
+
+@media (max-width:991px) {
+    .margin-bottom-15-res {
+        margin-bottom:15px !important;
+    }
+}
 
 
 
