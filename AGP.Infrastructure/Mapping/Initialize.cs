@@ -12,6 +12,7 @@ namespace AGP.Infrastructure.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<AccountGameProfile>();
+                cfg.AddProfile<TransactionProfile>();
             });
         }
     }
