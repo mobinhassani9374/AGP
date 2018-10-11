@@ -9,7 +9,6 @@ using AGP.Domain.Entities;
 
 namespace AGP.Mvc.Controllers
 {
-    [Authorize(Roles = "User,Admin")]
     public class AccountGameController : Controller
     {
         private readonly AccountGameRepository _accountGameRepository;

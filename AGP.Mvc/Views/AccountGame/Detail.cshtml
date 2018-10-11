@@ -60,20 +60,32 @@
 
             }
 
-            <p>
-                @if (ButtonAndLink.EnableBuyFinal(Model.State, Model.BuyState, Model.IsActive))
-                {
-                    <div class="text-center clearfix">
-                        <button class="product__btn btn"><span class="fa fa-shopping-cart"></span> نهایی کردن خرید </button>
-                    </div>
-                }
-                else
-                {
-                    <div class="text-center clearfix">
-                        <button disabled class="product__btn btn"><span class="fa fa-shopping-cart"></span> نهایی کردن خرید </button>
-                    </div>
-                }
-            </p>
+                <p>
+                    @if (ButtonAndLink.EnableBuyFinal(Model.State, Model.BuyState, Model.IsActive))
+                    {
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="text-center clearfix">
+                                <button class="product__btn btn" onclick="window.location='/Order/Index/@(Model.Id)'"><span class="fa fa-shopping-cart"></span> نهایی کردن خرید </button>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="text-center clearfix">
+                                <button class="product__btn btn" onclick="window.location='/CkeckOut/Index/@(Model.Id)'"><span class="fa fa-shopping-cart"></span> نهایی کردن خرید </button>
+                            </div>
+
+                        }
+
+                    }
+                    else
+                    {
+                        <div class="text-center clearfix">
+                            <button disabled class="product__btn btn"><span class="fa fa-shopping-cart"></span> نهایی کردن خرید </button>
+                        </div>
+                    }
+                </p>
         </div>
     </div>
 </div>
