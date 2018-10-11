@@ -388,5 +388,23 @@ h1.titr {
     }
 }
 
+.title {
+    padding-bottom:10px;
+    text-align:right;
+    font-size:18px;
+    position:relative;
+    padding-right:5px;
+}
+
+    .title:before {
+        content: '';
+        position: absolute;
+        top: 34px;
+        right: 0px;
+        width: 100px;
+        height: 3px;
+        background: #00897B;
+    }
+
 
 
