@@ -24,7 +24,7 @@ namespace AGP.Payment.Bitpay
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("api", _bitPayConfig.Api),
-                new KeyValuePair<string, string>("amount",$"{price}0"),
+                new KeyValuePair<string, string>("amount",$"{Math.Round(price)}0"),
                 new KeyValuePair<string,string>("redirect",_bitPayConfig.RedirectUrl),
                 new KeyValuePair<string, string>("name",_bitPayConfig.DisplayName),
                 new KeyValuePair<string, string>("email",_bitPayConfig.Email),
