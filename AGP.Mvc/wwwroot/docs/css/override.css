@@ -406,5 +406,24 @@ h1.titr {
         background: #00897B;
     }
 
+.blog-details-wrap {
+    box-shadow:0px 0px 10px #ccc;
+    background-color:#fff;
+}
+
+.btn-success {
+    background:#00897B !important;
+}
+
+
+    .btn-success:hover {
+        box-shadow: 0 14px 26px -12px rgba(116,96,238,0.42), 0 4px 23px 0 rgba(0,0,0,0.12), 0 8px 10px -5px rgba(116,96,238,0.2);
+        border:1px solid #00897B
+
+    }
+.color-theme-1 {
+    color:#7460EE !important;
+}
+
 
 

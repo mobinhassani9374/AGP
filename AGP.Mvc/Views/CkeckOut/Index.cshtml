@@ -4,27 +4,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
-    <div class="box form-matrial padding-10">
-        <div class="scroll">
-            <div class="description">
-                <img src="~/docs/images/user-login.png" class="img-responsive login-img" />
+<div class="col-md-10 col-md-offset-1 col-xs-12">
+    <div class="blog-details-wrap mb-20 box" style="overflow:hidden;">
+        <div class="col-md-6" style="margin:20px 0">
+            <div class="text-center" style="margin-bottom: 17px;">
+                <i style="font-size:50px;" class="fa fa-lock color-theme" aria-hidden="true"></i>
             </div>
-
-            <div class="description text-center">
-                برای خرید و پرداخت نهایی باید در سایت ثبت نام کرده باشید 
-            </div>
-
-            <div class="description text-center">
-                اگر ثبت نام نکرده اید از طریق لینک
-                <a href="/account/register" class="link">ثبت نام</a> می توانید ثبت نام کنید
-            </div>
-
-            <div class="description text-center">
-               اگر در سایت ثبت نام نکرده اید از طریق لینک 
-                <a href="/account/login" class="link">ورود</a> وارد شوید  
+            <h4 class="text-center">عضو  اکانت پی هستید ؟؟</h4>
+            <p class="text-center">برای تکمیل فرآیند خرید خود وارد شوید</p>
+            <div class="text-center">
+                <button onclick="window.location.href='account/login'" class="btn btn-success">ورود به اکانت پی</button>
             </div>
         </div>
+        <div class="col-md-6" style="margin:20px 0">
+            <div class="text-center" style="margin-bottom: 17px;">
+                <i style="font-size:50px;" class="fa fa-user color-theme" aria-hidden="true"></i>
+            </div>
+            <h4 class="text-center">تازه وارد هستید ؟؟</h4>
+            <p class="text-center">برای تکمیل فرآیند خرید خود ثبت نام کنید</p>
+            <div class="text-center">
+                <button onclick="window.location.href='account/register'" class="btn btn-success"> ثبت نام در اکانت پی</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
