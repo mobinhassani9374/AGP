@@ -425,5 +425,13 @@ h1.titr {
     color:#7460EE !important;
 }
 
+@media (max-width:767px) {
+    .margin-top-20-res {
+        margin-top: 20px;
+    }
+    .padding-0-res {
+        padding:0 !important;
+    }
+}
 
 
