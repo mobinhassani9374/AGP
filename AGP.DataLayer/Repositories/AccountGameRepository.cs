@@ -266,5 +266,13 @@ namespace AGP.DataLayer.Repositories
 
             return count;
         }
+        public decimal GetPrice(int id)
+        {
+            var price = _context.AccountGames.Where(c => c.Id.Equals(id))
+                .Select(c => c.Price)
+                .FirstOrDefault();
+
+            return price;
+        }
     }
 }

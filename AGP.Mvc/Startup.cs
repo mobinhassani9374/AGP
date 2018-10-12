@@ -14,6 +14,7 @@ using AGP.Mvc.Middleware;
 using AutoMapper;
 using AGP.Infrastructure.Mapping;
 using AGP.Domain.DTO;
+using AGP.Payment.Bitpay;
 
 namespace AGP.Mvc
 {
@@ -60,6 +61,9 @@ namespace AGP.Mvc
             services.AddScoped<GameRepository>();
             services.AddScoped<AccountGameRepository>();
             services.AddScoped<AdminExtraRepository>();
+            services.AddScoped<TransacionRepository>();
+            services.AddScoped<PayService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

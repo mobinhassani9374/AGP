@@ -18,7 +18,7 @@ namespace AGP.Payment.Bitpay
                 Message = "عملیات موفقیت آمیز بود"
             };
         }
-        public static PayResult Error()
+        public static PayResult Error(int id_get)
         {
             return new PayResult
             {

@@ -34,10 +34,10 @@ namespace AGP.Payment.Bitpay
             {
                 int id_get = Convert.ToInt32(await result.Content.ReadAsStringAsync());
                 if (id_get > 0) return PayResult.Okay(id_get);
-                else return PayResult.Error();
+                else return PayResult.Error(id_get);
             }
             else
-                return PayResult.Error();
+                return PayResult.Error(0);
         }
 
         public PayResult Checkout()
