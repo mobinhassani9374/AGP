@@ -30,6 +30,7 @@ namespace AGP.Mvc.Controllers
         /// <returns></returns>
         public IActionResult Index(int id)
         {
+            ViewBag.ig_get = id;
             // به دست آوردن جزییات تراکنش
             return View();
         }

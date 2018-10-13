@@ -13,6 +13,8 @@ namespace AGP.Mvc.Controllers
             if (User.Identity.IsAuthenticated)
                 return RedirectPermanent("/");
 
+
+            ViewBag.AccountGameId = id;
             return View();
         }
     }

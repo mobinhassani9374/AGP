@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "سبد خرید - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var id_get = ViewBag.ig_get;
 }
 <div class="col-md-12" style="padding:20px;">
     <div class="title">سبد خرید </div>
@@ -23,7 +24,7 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <a href="#" class="btn btn-primary">پرداخت نهایی</a>
+                        <a href="http://bitpay.ir/payment/gateway-@(id_get)" class="btn btn-primary" >پرداخت نهایی</a>
                     </td>
                 </tr>
             </tbody>
