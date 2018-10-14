@@ -62,6 +62,7 @@ namespace AGP.Mvc
             services.AddScoped<AccountGameRepository>();
             services.AddScoped<AdminExtraRepository>();
             services.AddScoped<TransacionRepository>();
+            services.AddScoped<UserAccountGameRepository>();
             services.AddScoped<PayService>();
             
         }
