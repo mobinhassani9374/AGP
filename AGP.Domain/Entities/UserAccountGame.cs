@@ -11,5 +11,6 @@ namespace AGP.Domain.Entities
         public int UserId { get; set; }
         public AccountGame AccountGame { get; set; }
         public int AccountGameId { get; set; }
+        public DateTime RequestTime { get; set; }
     }
 }

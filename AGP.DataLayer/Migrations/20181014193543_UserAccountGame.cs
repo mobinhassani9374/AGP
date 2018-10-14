@@ -45,7 +45,6 @@ namespace AGP.DataLayer.Migrations
                 table: "UserAccountGame",
                 column: "UserId");
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
