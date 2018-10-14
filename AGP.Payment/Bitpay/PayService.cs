@@ -40,7 +40,7 @@ namespace AGP.Payment.Bitpay
                 return PayResult.Error(0);
         }
 
-        public async Task<PayResult> Checkout(int trans_id,int id_get)
+        public async Task<PayResult> Checkout(int trans_id, int id_get)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(_bitPayConfig.BaseAddress);
@@ -51,11 +51,11 @@ namespace AGP.Payment.Bitpay
                 new KeyValuePair<string,string>("id_get",id_get.ToString()),
             });
             HttpResponseMessage result = client.PostAsync(_bitPayConfig.CheckoutUrl, content).Result;
-            if(result.IsSuccessStatusCode)
+            if (result.IsSuccessStatusCode)
             {
                 var resultPay = Convert.ToInt32(await result.Content.ReadAsStringAsync());
 
-                if (resultPay == 1) return PayResult.Okay(id_get);
+                if (resultPay == 1) return PayResult.Okay(id_get, trans_id);
                 else return PayResult.Error(0);
             }
 
