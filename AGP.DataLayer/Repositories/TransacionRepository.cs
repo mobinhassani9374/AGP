@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using System.Transactions;
+using System.Linq;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -30,6 +31,16 @@ namespace AGP.DataLayer.Repositories
             var result = _context.SaveChanges();
             if (result > 0) return ServiceResult.Okay();
             return ServiceResult.Error();
+        }
+        public int GetAccountGameId(int id_get)
+        {
+            var model = _context
+                .Transactions
+                .Where(c => c.id_get.Equals(id_get))
+                .Select(c => c.AccountGameId)
+                .FirstOrDefault();
+
+            return model;
         }
     }
 }

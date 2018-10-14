@@ -13,6 +13,7 @@ namespace AGP.DataLayer
         public DbSet<LogService> LogServices { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<ImageGame> ImageGames { get; set; }
+        public DbSet<Transaction> Transactions{ get; set; }
         public DbSet<AccountGame> AccountGames { get; set; }
         public DbSet<UserAccountGame> UserAccountGame { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

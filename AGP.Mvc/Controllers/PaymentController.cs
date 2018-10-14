@@ -40,6 +40,8 @@ namespace AGP.Mvc.Controllers
             });
             if(payResult.IsSuccess)
             {
+                var accountGameId = _transacionRepository.GetAccountGameId(id_get);
+
 
             }
             else
