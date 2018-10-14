@@ -12,6 +12,12 @@ namespace AGP.DataLayer.Mapper
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
             builder.HasKey(c=>c.Id);
+
+            builder
+                .HasOne(c => c.User)
+                .WithMany(c => c.Transactions)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
