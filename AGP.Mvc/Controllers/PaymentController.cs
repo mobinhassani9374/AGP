@@ -17,6 +17,12 @@ namespace AGP.Mvc.Controllers
         [HttpPost]
         public IActionResult BitPayResponse(int trans_id, int id_get)
         {
+            // زمانی که ازسمت بیت برگشت 
+            // ابتدا باید چک شود پرداخت کرده یا نه
+            // اگر پرداخت کرده بودISPAid آپدیت شود
+            // State AccountGame= RequestBuy 
+            // سپس یک رکورد در UserAccountGame بخورد 
+            // تراکنش آپیدیت شود
             return View();
         }
         public IActionResult Result()
