@@ -19,5 +19,9 @@ namespace AGP.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult Result()
+        {
+            return View();
+        }
     }
 }
