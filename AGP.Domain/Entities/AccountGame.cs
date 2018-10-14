@@ -39,6 +39,8 @@ namespace AGP.Domain.Entities
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
+        public ICollection<UserAccountGame> Users { get; set; }
+
 
     }
     public enum AccountGameState
