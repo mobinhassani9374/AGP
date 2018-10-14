@@ -9,7 +9,7 @@
   "BitPayConfig": {
     "Api": "4addd-025b1-d0c85-bbf1c-08d3cba119c58e24b6c3e87f1c54",
     "BaseAddress": "http://bitpay.ir/",
-    "RedirectUrl": "http://ferdows110.ir//Payment/PayResponse",
+    "RedirectUrl": "http://ferdows110.ir//Payment/BitPayResponse",
     "DisplayName": "اکانت پی",
     "Email": "http://seratvector.ir",
     "GatewayUrl": "payment/gateway-send"
