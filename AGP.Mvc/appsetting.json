@@ -12,6 +12,7 @@
     "RedirectUrl": "http://ferdows110.ir//Payment/BitPayResponse",
     "DisplayName": "اکانت پی",
     "Email": "http://seratvector.ir",
-    "GatewayUrl": "payment/gateway-send"
+    "GatewayUrl": "payment/gateway-send",
+    "CheckoutUrl": "payment/gateway-result-second"
   }
 }

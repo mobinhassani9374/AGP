@@ -12,5 +12,6 @@ namespace AGP.Domain.DTO
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public string GatewayUrl { get; set; }
+        public string CheckoutUrl { get; set; }
     }
 }

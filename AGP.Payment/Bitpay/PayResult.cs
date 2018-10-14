@@ -22,7 +22,7 @@ namespace AGP.Payment.Bitpay
         {
             return new PayResult
             {
-                id_get = 0,
+                id_get = id_get,
                 IsSuccess = false,
                 Message = "عملیات موفقیت آمیز نبود"
             };
