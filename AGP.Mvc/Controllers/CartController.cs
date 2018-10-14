@@ -53,10 +53,11 @@ namespace AGP.Mvc.Controllers
                 AccountGameId = id,
                 id_get = result.id_get,
                 Price = price,
-                UserId = User.GetUserId()
+                UserId = User.GetUserId(),
+                TransactionTime = DateTime.Now
             });
 
-            return RedirectToAction(nameof(Index), new { id =result.id_get});
+            return RedirectToAction(nameof(Index), new { id = result.id_get });
 
         }
     }

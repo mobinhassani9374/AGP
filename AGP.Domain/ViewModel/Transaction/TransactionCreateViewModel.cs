@@ -10,5 +10,6 @@ namespace AGP.Domain.ViewModel.Transaction
         public int id_get { get; set; }
         public int AccountGameId { get; set; }
         public int UserId { get; set; }
+        public DateTime TransactionTime { get; set; }
     }
 }
