@@ -26,8 +26,8 @@ namespace AGP.DataLayer.Repositories
         }
         public ServiceResult Update(TransactionEditViewModel model)
         {
-            var oldEntity = _context.Transactions.FirstOrDefault(c=>c.id_get.Equals(model.id_get));
-            var entity = AutoMapper.Mapper.Map(model,oldEntity);
+            var oldEntity = _context.Transactions.FirstOrDefault(c => c.id_get.Equals(model.id_get));
+            var entity = AutoMapper.Mapper.Map(model, oldEntity);
             _context.Update(entity);
             var result = _context.SaveChanges();
             if (result > 0) return ServiceResult.Okay();
@@ -42,6 +42,15 @@ namespace AGP.DataLayer.Repositories
                 .FirstOrDefault();
 
             return model;
+        }
+        public void UpdateIsSuccess(int id_get, bool value)
+        {
+            var entity = _context.Transactions.FirstOrDefault(c => c.id_get.Equals(id_get));
+            entity.IsSuccess = value;
+
+            _context.Update(entity);
+
+            _context.SaveChanges();
         }
     }
 }

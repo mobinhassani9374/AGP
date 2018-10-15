@@ -65,8 +65,8 @@ namespace AGP.Mvc.Controllers
                 {
                     // okay
 
-                // uppdate isSuc in Transaction
-
+                    // uppdate isSuc in Transaction
+                    _transacionRepository.UpdateIsSuccess(id_get, true);
                 }
                 else
                 {
