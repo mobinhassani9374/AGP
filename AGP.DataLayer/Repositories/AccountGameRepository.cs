@@ -278,9 +278,23 @@ namespace AGP.DataLayer.Repositories
 
         public AccountGameBuyResultDto SetRequestBuy(int id,int userId)
         {
-            var model = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+            var entity = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+            entity.UserBuyerId = userId;
+            entity.BuyState = AccountGameBuyState.ExistRequest;
 
-            return new AccountGameBuyResultDto();
+            _context.Entry(entity).Property(c => c.RowVersion).OriginalValue = entity.RowVersion;
+
+            _context.Entry(entity).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+                return AccountGameBuyResultDto.Okay();
+            }
+            catch
+            {
+                return AccountGameBuyResultDto.Error();
+            }
         }
     }
 }

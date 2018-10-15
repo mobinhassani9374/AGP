@@ -8,6 +8,7 @@ using AGP.Payment.Bitpay;
 using AGP.Domain.ViewModel.Transaction;
 using AGP.Domain.ViewModel.UserAccountGame;
 using AGP.Mvc.Security;
+using AGP.Domain.DTO.AccountGame;
 
 namespace AGP.Mvc.Controllers
 {
@@ -36,6 +37,7 @@ namespace AGP.Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> BitPayResponse(int trans_id, int id_get)
         {
+            var userId = User.GetUserId();
             // زمانی که ازسمت بیت برگشت 
             var payResult = await _payService.Checkout(trans_id, id_get);
 
@@ -55,20 +57,26 @@ namespace AGP.Mvc.Controllers
                 {
                     AccountGameId = accountGameId,
                     RequestTime = DateTime.Now,
-                    UserId = User.GetUserId()
+                    UserId = userId
                 });
+
+                // کار اصلی
+                var resultRequestBuy = _accountGameRepository.SetRequestBuy(accountGameId, userId);
+                if (resultRequestBuy.IsOkay)
+                {
+                    // okay
+                }
+                else
+                {
+                    // conflict
+                }
             }
             else
             {
                 // پرداختی صورت نگرفته است
                 // نمایش ارور
             }
-            // ابتدا باید چک شود پرداخت کرده یا نه
-            // اگر پرداخت کرده بودISPAid آپدیت شود
-            // State AccountGame= RequestBuy 
-            // سپس یک رکورد در UserAccountGame بخورد 
-            // تراکنش آپیدیت شود
-            return View();
+            return RedirectToAction(nameof(Result));
         }
         public IActionResult Result()
         {
