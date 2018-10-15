@@ -26,7 +26,8 @@ namespace AGP.DataLayer.Repositories
         }
         public ServiceResult Update(TransactionEditViewModel model)
         {
-            var entity = AutoMapper.Mapper.Map<Transaction>(model);
+            var oldEntity = _context.Transactions.FirstOrDefault(c=>c.id_get.Equals(model.id_get));
+            var entity = AutoMapper.Mapper.Map(model,oldEntity);
             _context.Update(entity);
             var result = _context.SaveChanges();
             if (result > 0) return ServiceResult.Okay();

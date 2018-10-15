@@ -34,7 +34,6 @@ namespace AGP.Mvc.Controllers
         /// <param name="trans_id"></param>
         /// <param name="id_get"></param>
         /// <returns></returns>
-        [HttpPost]
         public async Task<IActionResult> BitPayResponse(int trans_id, int id_get)
         {
             var userId = User.GetUserId();
@@ -65,6 +64,9 @@ namespace AGP.Mvc.Controllers
                 if (resultRequestBuy.IsOkay)
                 {
                     // okay
+
+                // uppdate isSuc in Transaction
+
                 }
                 else
                 {

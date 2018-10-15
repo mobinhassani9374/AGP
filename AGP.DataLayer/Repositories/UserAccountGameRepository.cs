@@ -17,7 +17,7 @@ namespace AGP.DataLayer.Repositories
         }
         public ServiceResult Create(UserAccountGameCreateViewModel model)
         {
-            var entity = AutoMapper.Mapper.Map<UserAccountGame>(model);
+            var entity = AutoMapper.Mapper.Map<Domain.Entities.UserAccountGame>(model);
             _context.Add(entity);
             var result = _context.SaveChanges();
             if (result > 0) return ServiceResult.Okay();
