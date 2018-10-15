@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using AGP.DataLayer.Repositories;
 using AGP.Payment.Bitpay;
 using AGP.Domain.ViewModel.Transaction;
+using AGP.Domain.ViewModel.UserAccountGame;
+using AGP.Mvc.Security;
 
 namespace AGP.Mvc.Controllers
 {
@@ -13,11 +15,14 @@ namespace AGP.Mvc.Controllers
     {
         private readonly TransacionRepository _transacionRepository;
         private readonly PayService _payService;
+        private readonly UserAccountGameRepository _userAccountGameRepository;
         public PaymentController(TransacionRepository transacionRepository,
-            PayService payService)
+            PayService payService,
+            UserAccountGameRepository userAccountGameRepository)
         {
             _transacionRepository = transacionRepository;
             _payService = payService;
+            _userAccountGameRepository = userAccountGameRepository;
         }
         /// <summary>
         /// نتیجه از سمت بیت پی
@@ -38,11 +43,17 @@ namespace AGP.Mvc.Controllers
                 trans_id = trans_id,
                 IsPaid = payResult.IsSuccess
             });
-            if(payResult.IsSuccess)
+
+            if (payResult.IsSuccess)
             {
                 var accountGameId = _transacionRepository.GetAccountGameId(id_get);
-
-
+                // یک رکورد در درخواست های کاربر میزنیم UserAccountGame 
+                _userAccountGameRepository.Create(new UserAccountGameCreateViewModel
+                {
+                    AccountGameId = accountGameId,
+                    RequestTime = DateTime.Now,
+                    UserId = User.GetUserId()
+                });
             }
             else
             {
