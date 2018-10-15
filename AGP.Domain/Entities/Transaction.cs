@@ -13,6 +13,7 @@ namespace AGP.Domain.Entities
         public int id_get { get; set; }
         public int trans_id { get; set; }
         public int AccountGameId { get; set; }
+        public AccountGame AccountGame { get; set; }
 
         /// <summary>
         /// آیا به دست کاربر رسیده است این اکانت یا اینکه به مشگل خورده

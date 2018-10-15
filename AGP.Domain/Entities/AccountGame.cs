@@ -40,6 +40,7 @@ namespace AGP.Domain.Entities
         public byte[] RowVersion { get; set; }
 
         public ICollection<UserAccountGame> Users { get; set; }
+        public ICollection<Transaction> Transactions { get; set; }
 
 
     }
