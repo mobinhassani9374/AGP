@@ -32,7 +32,9 @@ namespace AGP.Mvc.Controllers
         {
             ViewBag.ig_get = id;
             // به دست آوردن جزییات تراکنش
-            return View();
+            var model = _transacionRepository.GetByid_get(id);
+
+            return View(model);
         }
         /// <summary>
         ///  از بیت پی آی دی گت رو دریافت میکنیم و یک رکورذ ذر تراکنش ها میزنیم

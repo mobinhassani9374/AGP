@@ -6,6 +6,8 @@ using System.Text;
 using AutoMapper;
 using System.Transactions;
 using System.Linq;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -51,6 +53,19 @@ namespace AGP.DataLayer.Repositories
             _context.Update(entity);
 
             _context.SaveChanges();
+        }
+        public TransactionViewModel GetByid_get(int id_get)
+        {
+
+            var data = _context
+                    .Transactions
+                    .Include(c => c.AccountGame)
+                    .ThenInclude(c => c.Game)
+                    .FirstOrDefault(c => c.id_get.Equals(id_get));
+
+            var model = AutoMapper.Mapper.Map<TransactionViewModel>(data);
+
+            return model;
         }
     }
 }

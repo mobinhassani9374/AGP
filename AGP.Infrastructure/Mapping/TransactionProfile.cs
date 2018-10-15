@@ -12,6 +12,7 @@ namespace AGP.Infrastructure.Mapping
         {
             CreateMap<TransactionCreateViewModel, Domain.Entities.Transaction>();
             CreateMap<TransactionEditViewModel, Domain.Entities.Transaction>();
+            CreateMap<Domain.Entities.Transaction, TransactionViewModel>();
         }
     }
 }
