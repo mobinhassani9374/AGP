@@ -79,7 +79,12 @@
                                         <img src="~/Attachment/@(item.ImageName)" class="img-thumbnail" style="width:60px;height:60px;" />
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="deleteImages" value="@(item.Id)"
+                                        <label class="form-checkbox">
+                                            
+                                            <input type="checkbox" name="deleteImages" value="@(item.Id)" />
+                                            <span class="form-checkbox__checkmark"></span>
+                                        </label>
+                                       
                                     </td>
                                     <td class="fa-iransansdn">@imagesByCount.Where(c=>c.ImageName==item.ImageName).Select(c=>c.Count).FirstOrDefault()</td>
                                 </tr>
