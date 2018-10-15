@@ -1,4 +1,5 @@
-﻿
+﻿@using AGP.Domain.ViewModel.Transaction
+@model TransactionViewModel
 @{
     ViewData["Title"] = "سبد خرید - اکانت پی ";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,6 +12,7 @@
         <table class="table table-condensed">
             <thead>
                 <tr>
+                    <th>شماره فاکتور</th>
                     <th>نام بازی</th>
                     <th>سطح</th>
                     <th>قیمت</th>
@@ -18,12 +20,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>پی اس دانلود </td>
-                    <td>سطخ بار زی زیی </td>
-                    <td class="seperator color-black">10000</td>
+                    <td>@Model.id_get</td>
+                    <td>@($"{Model.AccountGame.Game} - {Model.AccountGame.Game.DisplayName}")</td>
+                    <td>@(Model.AccountGame.Level)</td>
+                    <td class="seperator color-black">@(Model.Price.ToString("#,##")) تومان</td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <a href="http://bitpay.ir/payment/gateway-@(id_get)" class="btn btn-primary" >پرداخت نهایی</a>
                     </td>
                 </tr>
