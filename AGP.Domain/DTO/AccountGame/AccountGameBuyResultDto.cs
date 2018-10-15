@@ -12,9 +12,18 @@ namespace AGP.Domain.DTO.AccountGame
         {
             return new AccountGameBuyResultDto
             {
+                Conflict = true,
+                Message = "اکانت مورد نظر توسط کاربر دیگری در حال بررسی می باشد"
+            };
+        }
+        public static AccountGameBuyResultDto Okay()
+        {
+            return new AccountGameBuyResultDto
+            {
                 Conflict = false,
                 Message = "اکانت مورد نظر توسط کاربر دیگری در حال بررسی می باشد"
             };
         }
+        public bool IsOkay { get { return Conflict ? false : true; } }
     }
 }

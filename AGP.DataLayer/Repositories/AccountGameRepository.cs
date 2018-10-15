@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AGP.Utility;
 using AutoMapper.QueryableExtensions;
 using AGP.Domain.Entities;
+using AGP.Domain.DTO.AccountGame;
 
 namespace AGP.DataLayer.Repositories
 {
@@ -44,7 +45,7 @@ namespace AGP.DataLayer.Repositories
                 Level = model.Level,
                 Price = model.Price,
                 State = AccountGameState.Waiting,
-                BuyState =AccountGameBuyState.WaitingForBuy,
+                BuyState = AccountGameBuyState.WaitingForBuy,
                 UserId = model.UserId
             });
             var result = _context.SaveChanges();
@@ -248,7 +249,7 @@ namespace AGP.DataLayer.Repositories
             var model = _context
                 .AccountGames
                 .Where(c => c.State == AccountGameState.Confirmed)
-                .Where(c=>c.IsActive)
+                .Where(c => c.IsActive)
                 .ProjectTo<AccountGameViewModel>()
                 .OrderBy(c => c.Id)
                 .Skip((pageNumber - 1) * pageSize)
@@ -273,6 +274,13 @@ namespace AGP.DataLayer.Repositories
                 .FirstOrDefault();
 
             return price;
+        }
+
+        public AccountGameBuyResultDto SetRequestBuy(int id,int userId)
+        {
+            var model = _context.AccountGames.FirstOrDefault(c => c.Id == id);
+
+            return new AccountGameBuyResultDto();
         }
     }
 }

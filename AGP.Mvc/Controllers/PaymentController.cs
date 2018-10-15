@@ -16,13 +16,16 @@ namespace AGP.Mvc.Controllers
         private readonly TransacionRepository _transacionRepository;
         private readonly PayService _payService;
         private readonly UserAccountGameRepository _userAccountGameRepository;
+        private readonly AccountGameRepository _accountGameRepository;
         public PaymentController(TransacionRepository transacionRepository,
             PayService payService,
-            UserAccountGameRepository userAccountGameRepository)
+            UserAccountGameRepository userAccountGameRepository,
+             AccountGameRepository accountGameRepository)
         {
             _transacionRepository = transacionRepository;
             _payService = payService;
             _userAccountGameRepository = userAccountGameRepository;
+            _accountGameRepository = accountGameRepository;
         }
         /// <summary>
         /// نتیجه از سمت بیت پی
