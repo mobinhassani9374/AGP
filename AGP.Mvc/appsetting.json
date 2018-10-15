@@ -1,7 +1,7 @@
 ﻿{
   "ConnectionStrings": {
-    //"DefaultConnection": "Data Source=.;Initial Catalog=AGP_Db;Integrated Security=True",
-    "DefaultConnection": "Data Source=WIN-SQL\\MSSQLSERVER2016;Initial Catalog=AGP_Db;Persist Security Info=True;User ID=sa; Password=exir@123; MultipleActiveResultSets=True"
+    "DefaultConnection": "Data Source=.;Initial Catalog=AGP_Db;Integrated Security=True",
+    //"DefaultConnection": "Data Source=WIN-SQL\\MSSQLSERVER2016;Initial Catalog=AGP_Db;Persist Security Info=True;User ID=sa; Password=exir@123; MultipleActiveResultSets=True"
   },
   "EnableLogService": true,
   "AuthenticationExpiresDay": 30,
