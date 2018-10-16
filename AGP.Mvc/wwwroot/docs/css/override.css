@@ -502,4 +502,8 @@ h1.titr {
     transform: rotate(45deg);
 }
 
+.product , .box {
+    animation:pulse ease-in .4s;
+}
+
 
